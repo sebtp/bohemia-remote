@@ -24,33 +24,43 @@
 						<div class="meta">
 							<?php 
 								$client = get_field('client_name');
-								print_r($client);
+								$countclients = 0;
 								$work_args = array(
 									'post_type' => 'work',
-									'meta_key'	=> 'client_name',
-									'meta_value'	=> $client[0]
 								);
 								$work_query = new WP_Query( $work_args );
 								if( $work_query->have_posts() ):
-								while( $work_query->have_posts() ) : $work_query->the_post(); ?>
-									TEST
+								while( $work_query->have_posts() ) : $work_query->the_post();
+									$client2 = get_field('client_name');
+									if ($client[0] == $client2[0] ){
+										$countclients += 1;
+									}
+								?>
 							<?php endwhile; endif; ?>
 							<?php wp_reset_query();?>
-							
-							<?php if( $client ): ?>
 								<?php 
-									$countclients = count($client);
 									if($countclients >=2){
 								?>
-								<?php foreach( $client as $client ): ?>
-									<a href="<?php echo get_permalink( $client->ID ); ?>" class="client"><?php echo get_the_title( $client->ID ); ?></a>
-								<?php endforeach; ?>
+								<?php
+									foreach( $client as $post ):
+									setup_postdata($post);
+								?>
+								<a href="<?php echo get_permalink( $client->ID ); ?>" class="client"><?php echo get_the_title( $client->ID ); ?></a>
+								<?	
+									endforeach;
+									wp_reset_postdata();	  
+								?>
 								<?php } else { ?>
-								<?php foreach( $client as $client ): ?>
-									<span class="client"><?php echo get_the_title( $client->ID ); ?></span>
-								<?php endforeach; ?>
+									<span class="client">
+									<?php
+										foreach( $client as $post ):
+										setup_postdata($post);
+										the_title();
+										endforeach;
+										wp_reset_postdata();	  
+									?>
+									</span>
 								<?php } ?>
-							<?php endif; ?>
 							<time class="year"><?php the_field('year'); ?></time>
 						</div>
 					</header>

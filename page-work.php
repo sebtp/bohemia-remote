@@ -2,9 +2,9 @@
 <?php get_header(); ?>
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-<!-- 	The hero image. echo the url instead of: http://lorempixel.com/1920/1080-->
+<!-- 	The hero image. -->
 		<div class="hero container-full" style="background-image: url(<?php echo the_post_thumbnail_url( 'full' ); ?>)">
-			<div class="row">
+			<div class="row middle-xs">
 				<div class="col-xs col-sm-6 col-md-5 col-md-offset-1 col-lg-4">
 					<h1><?php the_title(); ?></h1>
 					<div class="white-bg"><?php the_content(); ?></div>
@@ -13,7 +13,7 @@
 		</div>
 
 <!-- 	The main content -->
-		<main class="container-full work-bg">
+		<main class="container-full">
 			<?php
 					$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 					$work_args = array(
@@ -33,9 +33,9 @@
 				<a href="<?php the_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
 					<img src="<?php echo $figm[0]; ?>" alt="<?php the_title(); ?>">	
 					<div class="row post-item-inner">
-						<div class="col-xs-11">
+						<div class="col-sm-11">
 							<h2 class="col-xs" ><?php the_title(); ?></h2>
-							<div class="tags col-xs-9">
+							<div class="tags col-xs col-xlg-9">
 								<?php
 									$terms = wp_get_object_terms( $post->ID, 'label' );
 									echo '<ul>';
@@ -45,7 +45,7 @@
 									echo '</ul>';
 								?>
 							</div>
-							<div class="client col-xs-9">
+							<div class="client col-xs col-xlg-9">
 								<?php 
 									$clients = get_field('client_name');
 									foreach( $clients as $post ):
@@ -62,16 +62,15 @@
 			</div>
 			<div class="row center-xs">
 				<div class="col-xs" id="load-more">
-					<?php if ($the_query->max_num_pages > 1) { // check if the max number of pages is greater than 1  ?>
-
-						  <?php echo get_previous_posts_link( 'Previous Page' ); ?>
-
+					<?php if ($work_query->max_num_pages > 1) { // check if the max number of pages is greater than 1  ?>
+						<?php echo get_next_posts_link( 'Next', $work_query->max_num_pages ); // display older posts link ?>
+						<?php echo get_previous_posts_link( 'Previous' ); // display newer posts link ?>
 					<?php } ?>
 					<!--<button class="outline-white"></button>-->
 				</div>
 			</div>
 			<?php endif; ?>
-		    <?php /*wp_reset_postdata();*/ ?>
+		    <?php wp_reset_postdata(); ?>
 			<div class="tree">
 				<img src="<?php bloginfo('template_directory');?>/img/tree.jpg" alt="">
 			</div>

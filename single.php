@@ -30,7 +30,7 @@
 					</header>
 
 				<!-- Intro -->
-					<section class="col-xs col-sm-7 col-md-offset-1">
+					<section class="intro col-xs col-sm-7 col-md-offset-1">
 						<?php the_field('intro_text'); ?>
 					</section>
 
@@ -40,17 +40,17 @@
 					</section>							
 
 				<!-- Content Footer -->
-				<footer class="tags col-xs-8 col-md-offset-1 col-md-7">
-						<div class="row">
+					<footer class="col-xs col-sm-8 col-md-offset-1 col-md-7">
+						<div class="tags row">
 						<?php
-									   $posttags = get_the_tags();
-									   if ($posttags) {
-										  echo '<ul>'; 
-										  foreach($posttags as $tag) {
-											echo '<li><a href="' . get_tag_link($tag->term_id) . '">&#35;' . $tag->name . '</a></li>'; 
-										  }
-										  echo '</ul>';
-									   }
+						   $posttags = get_the_tags();
+						   if ($posttags) {
+							  echo '<ul>'; 
+							  foreach($posttags as $tag) {
+								echo '<li><a href="' . get_tag_link($tag->term_id) . '">&#35;' . $tag->name . '</a></li>'; 
+							  }
+							  echo '</ul>';
+						   }
 						?>
 						</div>						
 					</footer>
@@ -58,12 +58,13 @@
 			
 				
 		<!-- 	Sidebar -->
-
-				<aside class="col-md-4">
-					<h4>aside</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.</p>
+				<aside class="col-xs col-sm-4 col-md-3">
+					<div>
+						<h4>Free download</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+						<button class="green-btn">Download Case-study</button>
+					</div>
 				</aside>
-
 
 			</div>
 		</main>
@@ -139,7 +140,7 @@
 											echo '<li>&#35;' . $tag->name . '</li>'; 
 										  }
 										  echo '</ul>';
-									   }
+									   } 
 									?>
 							</div>
 							</div>

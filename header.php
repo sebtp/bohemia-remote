@@ -54,7 +54,7 @@
 		$posttype = get_post_type();
 		$pagefile = get_page_template_slug();
 		if ( is_front_page() ) :
-		    echo '<body class="">';
+		    echo '<body class="front-page">';
 		elseif ( $posttype == 'post' ) :
 		     echo '<body class="single-blog">';
 		elseif ( $posttype == 'work' ) :
@@ -94,14 +94,14 @@
 		</svg>
   		
 <!-- 	The hidden menu -->
-	   	<nav class="menu"> 
+	   	<nav class="menu-wrapper"> 
 			<div class="menu-container">
-					<?php
-					wp_nav_menu( array( 
-						'theme_location' => 'my-custom-menu', 
-						'container_class' => 'menu-content',
-						'items_wrap' => my_nav_wrap()) ); 
-					?>
+				<?php
+				wp_nav_menu( array( 
+					'theme_location' => 'my-custom-menu', 
+					'container_class' => 'menu-content',
+					'items_wrap' => my_nav_wrap()) ); 
+				?>
 			</div>
 			<div class="veil"></div>
 		</nav> 

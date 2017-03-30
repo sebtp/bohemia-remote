@@ -81,4 +81,12 @@ function cc_mime_types($mimes) {
   return $mimes;
 }
 add_filter('upload_mimes', 'cc_mime_types');
+
+// add classes to links for next and prev posts pagination
+add_filter('next_posts_link_attributes', 'posts_link_attributes');
+add_filter('previous_posts_link_attributes', 'posts_link_attributes');
+
+function posts_link_attributes() {
+    return 'class="load-more-button"';
+}
 ?>

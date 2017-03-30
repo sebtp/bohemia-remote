@@ -1,41 +1,99 @@
-// Changing color of header
+
+// Changing colors of header
 jQuery(document).ready(function($){ 
 	'use strict';
-	if ( $("body").hasClass("single-work") || $("body").hasClass("single-blog")	) { // IF IN SINGLE PAGE
-		$("#ham>span").addClass("white-bg");
-		$(".phone,.logo").addClass("white");
+	var hamburger = $("#ham>span"),
+		logo = $(".logo"),
+		phone = $(".phone"),
+		gradient = $(".gradient"),
+		body = $("body");
+	
+	// Function to be called to change the color and remove the gradient + logo
+	$.fn.setColor = function(colorBg, color){
+        hamburger.addClass(colorBg);
+		phone.addClass(color);
+		logo.addClass(color);
+    };
+	
+	// Function to be called to change the color and remove the gradient + logo
+	$.fn.switchToColor = function(colorBg, color){
+        hamburger.addClass(colorBg);
+		phone.addClass(color);
+		gradient.css("top", "-16rem");
+		logo.parent().css("margin-top", "-6rem");
+    };
+	
+	// Function to be called to change back the color and get the gradient + logo back
+	$.fn.switchFromColor = function(colorBg, color){
+        hamburger.removeClass(colorBg);
+		phone.removeClass(color);
+		gradient.css("top", "0rem");
+		logo.parent().css("margin-top", "0rem");
+    };
+	
+	// Checking what page are we on and adjusting based on it
+	if (body.hasClass("front-page") || body.hasClass("overview-blog")) {
 		
-		//CHANGE HEADER COLOR ON SCROLL PAST HEADER IN SINGLE PAGES
+		//set inital color green
+		$.fn.setColor("green-bg","green");
+		
+		//Make the logo dissapear
 		$(window).scroll(function() {		
 			var scroll = $(window).scrollTop(),
 				vph = $(window).height() / 3 * 2 - 40;
 
-			if (scroll >= vph) {
-				$(".phone").removeClass("white");
-				$(".phone").addClass("green");
-				$("a.logo").css("opacity", "0");
-				$(".gradient").css("opacity", "0");
-				$("#ham>span").addClass("green-bg");
-				$("#ham>span").removeClass("white-bg");
-
-
+			if ( (scroll >= vph) ) {
+				logo.parent().css("margin-top", "-6rem");
 			} else {
-				$(".phone").removeClass("green");
-				$(".phone").addClass("white");
-				$("a.logo").css("opacity", "1");
-				$(".gradient").css("opacity", "1");
-				$("#ham>span").addClass("white-bg");
-				$("#ham>span").removeClass("green-bg");
+				logo.parent().css("margin-top", "0rem");
 			}
 		});
 		
-	} else {
-		$("#ham>span").addClass("blue-bg");
-		$(".phone,.logo").addClass("blue"); 
+	} else if (body.hasClass("overview-work") || body.hasClass("overview-clients") || body.hasClass("overview-about")) {
+		
+		//set inital color red
+		$.fn.setColor("red-bg","red");
+		
+		//CHANGE HEADER COLOR ON SCROLL PAST HEADER 
+		$(window).scroll(function() {		
+			var scroll = $(window).scrollTop(),
+				vph = $(window).height() / 3 * 2 - 40;
+
+			if ( (scroll >= vph) ) {
+				$.fn.switchToColor("white-bg","white");
+			} else {
+				$.fn.switchFromColor("white-bg","white");
+			}
+		});
+		
+	} else if (body.hasClass("single-blog") || body.hasClass("single-contact")) {
+		
+		//CHANGE HEADER COLOR ON SCROLL PAST HEADER
+		$(window).scroll(function() {		
+			var scroll = $(window).scrollTop(),
+				vph = $(window).height() / 3 * 2 - 40;
+
+			if ( (scroll >= vph) ) {
+				$.fn.switchToColor("green-bg","green");
+			} else {
+				$.fn.switchFromColor("green-bg","green");
+			}
+		});
+		
+	} else if (body.hasClass("single-work") || body.hasClass("single-anout")) {
+		//CHANGE HEADER COLOR ON SCROLL PAST HEADER 
+		$(window).scroll(function() {		
+			var scroll = $(window).scrollTop(),
+				vph = $(window).height() / 3 * 2 - 40;
+
+			if ( (scroll >= vph) ) {
+				$.fn.switchToColor("red-bg","red");
+			} else {
+				$.fn.switchFromColor("red-bg","red");
+			}
+		});
 	}
-	if ($("body").hasClass("front-page")) {
-		$(".gradient").hide();
-	}
+	
 });
 
 // Hamburger toggle animation
@@ -43,15 +101,15 @@ jQuery(document).ready(function($){
 	'use strict';
 	$('#ham').click(function(event) {
 		event.preventDefault();
-		$('.menu').toggleClass('is-visible');
+		$('.menu-wrapper').toggleClass('is-visible');
 		$('#ham').toggleClass('open');
-		$(".gradient").fadeToggle("fast");
+		//$(".gradient").fadeToggle("fast");
 	});
-	$('.menu>.veil').click(function(event){
+	$('.menu-wrapper>.veil').click(function(event){
 		event.preventDefault();
-		$('.menu').toggleClass('is-visible');
+		$('.menu-wrapper').toggleClass('is-visible');
 		$('#ham').toggleClass('open');
-		$(".gradient").fadeToggle("fast");
+		//$(".gradient").fadeToggle("fast"); 
 	});	
 });
 
