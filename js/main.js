@@ -49,7 +49,7 @@ jQuery(document).ready(function($){
 			}
 		});
 		
-	} else if (body.hasClass("overview-work") || body.hasClass("overview-clients") || body.hasClass("overview-about")) {
+	} else if (body.hasClass("overview-work") || body.hasClass("overview-about")) {
 		
 		//set inital color red
 		$.fn.setColor("red-bg","red");
@@ -92,6 +92,9 @@ jQuery(document).ready(function($){
 				$.fn.switchFromColor("red-bg","red");
 			}
 		});
+	} else {
+		//set inital color red
+		$.fn.setColor("red-bg","red");
 	}
 	
 });

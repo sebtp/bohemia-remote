@@ -1392,14 +1392,7 @@ h1, h2, h3, h4, h5, h6, .title {
 .overview-blog h4,
 .overview-blog h5,
 .overview-blog h6,
-.overview-blog .title,
-.overview-clients h1,
-.overview-clients h2,
-.overview-clients h3,
-.overview-clients h4,
-.overview-clients h5,
-.overview-clients h6,
-.overview-clients .title {
+.overview-blog .title {
   background: -webkit-linear-gradient(45deg, #0046b4, #46beaf);
   background: -moz-linear-gradient(45deg, #0046b4, #46beaf);
   background: -o-linear-gradient(45deg, #0046b4, #46beaf);
@@ -1430,7 +1423,14 @@ h1, h2, h3, h4, h5, h6, .title {
 .overview-about h4,
 .overview-about h5,
 .overview-about h6,
-.overview-about .title {
+.overview-about .title,
+.overview-clients h1,
+.overview-clients h2,
+.overview-clients h3,
+.overview-clients h4,
+.overview-clients h5,
+.overview-clients h6,
+.overview-clients .title {
   background: -webkit-linear-gradient(45deg, #0046b4, #fa5f69);
   background: -moz-linear-gradient(45deg, #0046b4, #fa5f69);
   background: -o-linear-gradient(45deg, #0046b4, #fa5f69);
@@ -1846,6 +1846,10 @@ figcaption {
         color: #0046b4; }
     .menu-content li:first-of-type {
       margin-top: 0; }
+    .menu-content li:last-of-type a {
+      color: #fa5f69; }
+      .menu-content li:last-of-type a:hover {
+        color: #0046b4; }
 
 @media only screen and (min-width: 48rem) {
   .menu-content p {
@@ -2672,6 +2676,14 @@ aside {
   color: #fa5f69; }
 .single-work a {
   color: #fa5f69; }
+.single-work footer.tags li {
+  color: #fa5f69;
+  -webkit-transition: all, 0.3s, ease;
+  -moz-transition: all, 0.3s, ease;
+  -o-transition: all, 0.3s, ease;
+  transition: all, 0.3s, ease; }
+  .single-work footer.tags li:hover {
+    color: #0046b4; }
 
 /* scss/templates/_overview-work.scss */
 .overview-work main, .work-bg {
@@ -2683,12 +2695,12 @@ aside {
   overflow: hidden; }
 
 /* scss/templates/_single.scss */
-.content h2, .content h3, .content p, .content blockquote {
+.content h2, .content h3, .content p, .content blockquote, .content ul {
   padding-right: 0.5rem;
   padding-left: 0.5rem; }
 
 @media only screen and (min-width: 48rem) {
-  .content h2, .content h3, .content p, .content blockquote {
+  .content h2, .content h3, .content p, .content blockquote, .content ul {
     padding-left: 0;
     margin-right: 33.33333333%; }
 
@@ -2700,7 +2712,7 @@ aside {
     padding-left: 8.33333333%;
     margin-right: 50%; }
 
-  .content h2, .content h3, .content p {
+  .content h2, .content h3, .content p, .content ul {
     padding-right: 1.5rem;
     padding-left: 8.33333333%;
     margin-right: 33.33333333%; } }
