@@ -37,7 +37,7 @@
 				<!-- Content -->
 					<section class="content">
 						<?php the_content(); ?>
-					</section>							
+					</section>					
 
 				<!-- Content Footer -->
 					<footer class="col-xs col-sm-8 col-md-offset-1 col-md-7">
@@ -47,12 +47,42 @@
 						   if ($posttags) {
 							  echo '<ul>'; 
 							  foreach($posttags as $tag) {
-								echo '<li><a href="' . get_tag_link($tag->term_id) . '">&#35;' . $tag->name . '</a></li>'; 
+								echo '<li><a href="' . get_tag_link($tag->term_id) . '">' . $tag->name . '</a></li>'; 
 							  }
 							  echo '</ul>';
 						   }
 						?>
-						</div>						
+						</div>
+						<hr noshade="noshade" color="#eee" class="row">
+						<?php
+							$authorid = get_field('blog_author');
+						?>
+						<?php if( $authorid ): ?>
+						<?php foreach( $authorid as $authorid ): ?>
+						<?php $authorimg = wp_get_attachment_image_src( get_post_thumbnail_id( $authorid->ID), 'thumbnail'); ?>
+						<div class="author-blog row">
+							<div class="author-wrapper row middle-xs">
+								<img src="<?php echo $authorimg[0]; ?>" alt="<?php echo get_the_title( $authorid->ID ); ?>">						
+								<div class="author-inner">
+									<div class="row"><?php echo get_the_title( $authorid->ID ); ?></div>
+									<div class="row">
+										<?php the_field('job_title', $authorid->ID ); ?><?php
+											$company = get_field('company', $authorid->ID);
+											if ($company != ''){
+												echo '&comma;&nbsp;' . $company;
+											}
+										?>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-8">
+									<?php the_field('author_bio', $authorid->ID ); ?>
+								</div>
+							</div>
+						</div>
+						<?php endforeach; ?>
+						<?php endif; ?>						
 					</footer>
 				</article>
 			
@@ -93,7 +123,7 @@
 									   if ($posttags) {
 										  echo '<ul>'; 
 										  foreach($posttags as $tag) {
-											echo '<li>&#35;' . $tag->name . '</li>'; 
+											echo '<li>' . $tag->name . '</li>'; 
 										  }
 										  echo '</ul>';
 									   }
@@ -133,11 +163,11 @@
 							<h2><?php echo $next_post->post_title; ?></h3>
 							<div class="tags">
 								<?php
-									   $posttags = get_the_tags($prevpostid);
+									   $posttags = get_the_tags($nextpostid);
 									   if ($posttags) {
 										  echo '<ul>'; 
 										  foreach($posttags as $tag) {
-											echo '<li>&#35;' . $tag->name . '</li>'; 
+											echo '<li>' . $tag->name . '</li>'; 
 										  }
 										  echo '</ul>';
 									   } 

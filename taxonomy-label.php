@@ -1,70 +1,20 @@
-<?php /* Template Name: Work*/ ?>
-
 <?php get_header(); ?>
 
-<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-
-<?php
-$thispost = get_the_ID();
-$thispostlink = get_permalink( $thispost );
-?>
-
-<!-- 	The hero image. -->
-
-		<div class="hero container-full clip-svg-hero" style="background-image: url(<?php echo the_post_thumbnail_url( 'full' ); ?>)">
-
+<!-- 	The hero image. echo the url instead of: http://lorempixel.com/1920/1080-->
+		<div class="hero container-full" style="background-image: url(<?php bloginfo('template_directory');?>/img/hero_work.jpg)">
 			<div class="row middle-xs">
-
 				<div class="col-xs col-sm-6 col-md-5 col-md-offset-1 col-lg-4">
-
-					<h1><?php the_title(); ?></h1>
-
-					<div class="white-bg"><?php the_content(); ?></div>
-
+					<h1><?php single_term_title(); ?></h1>
+					<div class="white-bg"><?php echo term_description(); ?></div>
 				</div>
-
 			</div>
-
 		</div>
 
-
-
 <!-- 	The main content -->
-
 		<main class="container-full">
-
-			<?php
-
-					$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
-
-					$work_args = array(
-
-						'post_type' => 'work',
-
-						'posts_per_page' => 8,
-
-						'paged' => $paged
-
-					);
-
-					$work_query = new WP_Query( $work_args );
-
-				?>
-
-				<?php if( $work_query->have_posts() ): ?>
-
-			<div class="row" id="show-posts">
-
-				
-
-				<?php while( $work_query->have_posts() ) : $work_query->the_post(); ?>
-
-				<?php 
-
-					$figm = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full');
-
-				?>
-
+			<div class="row">
+				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+				<?php $figm = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full'); ?>
 				<a href="<?php the_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
 
 					<img src="<?php echo $figm[0]; ?>" alt="<?php the_title(); ?>">	
@@ -120,36 +70,10 @@ $thispostlink = get_permalink( $thispost );
 					</div>
 
 				</a>
-
 				<?php endwhile; ?>
-
-			</div>
-
-			<div class="row center-xs">
-
-				<div class="col-xs" id="load-more">
-						<?php load_more_button(); ?>
-
-					
-					
-				</div>
-
-			</div>
-
-			<?php endif; ?>
-
-		    <?php wp_reset_postdata(); ?>
-
+				<?php endif; ?>	
 			<div class="tree">
-
 				<img src="<?php bloginfo('template_directory');?>/img/tree.jpg" alt="">
-
 			</div>
-
 		</main>
-
-
-
-<?php endwhile; endif; ?>
-
 <?php get_footer(); ?>

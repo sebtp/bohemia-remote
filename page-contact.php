@@ -55,50 +55,10 @@
 <!-- 	Contact form -->
 		<section class="contact-form container-full">
 			<div class="row center-xs">
-				<h2>Want to know more?</h2>
+				<h2><?php the_field('formulier_titel'); ?></h2>
 			</div>
 			<div class="row center-xs">				
-				<div id="mc_embed_signup">
-					<form action="//bohemiaamsterdam.us2.list-manage.com/subscribe/post?u=ff7aa484f44598d638542407c&amp;id=00529f1a03" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-						<div id="mc_embed_signup_scroll">
-
-							<div class="mc-field-group">
-								<label for="mce-FNAME">First Name<span class="asterisk">*</span></label>
-								<input type="text" value="" name="FNAME" class="required type" id="mce-FNAME">
-							</div>
-							<div class="mc-field-group">
-								<label for="mce-LNAME">Last Name<span class="asterisk">*</span></label>
-								<input type="text" value="" name="LNAME" class="required type" id="mce-LNAME">
-							</div>
-							<div class="mc-field-group">
-								<label for="mce-EMAIL">Email Address<span class="asterisk">*</span></label>
-								<input type="email" value="" name="EMAIL" class="required email type" id="mce-EMAIL">
-							</div>
-							<div class="mc-field-group input-group">
-								<label>Which label fits you best?<span class="asterisk">*</span></label>
-								<ul>
-									<li>
-										<input type="radio" value="1" name="group[16389]" id="mce-group[16389]-16389-0">
-										<label for="mce-group[16389]-16389-0">Director</label>
-									</li>
-									<li>
-										<input type="radio" value="2" name="group[16389]" id="mce-group[16389]-16389-1">
-										<label for="mce-group[16389]-16389-1">Manager</label>
-									</li>
-									<li>
-										<input type="radio" value="4" name="group[16389]" id="mce-group[16389]-16389-2">
-										<label for="mce-group[16389]-16389-2">Creative</label>	</li>
-								</ul>
-							</div>
-							<div id="mce-responses" class="clear">
-								<div class="response" id="mce-error-response" style="display:none"></div>
-								<div class="response" id="mce-success-response" style="display:none"></div>
-							</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-
-							<div class="clear"><input type="submit" value="sign up" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-						</div>
-					</form>
-				</div>
+				<?php the_field('contactformulier'); ?>
 			</div>
 			<div class="tree">
 				<img src="<?php bloginfo('template_directory');?>/img/tree.jpg" alt="">

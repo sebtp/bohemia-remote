@@ -11,10 +11,11 @@
 				<!-- 5 Reasons to work with Bohemia -->
 					<div class="zero row middle-xs">
 						<img class="bg-img" src="<?php bloginfo('template_directory');?>/img/hero_clouds.jpg" alt="">
-						<div class="nr col-xs-12 center-xs col-sm-4 col-sm-offset-1">
+						<div class="nr col-xs-12 center-xs col-md-5">
 							<img src="<?php bloginfo('template_directory');?>/img/num-all.png" alt="">
 						</div>
-						<h1  class="col-xs-12 center-xs col-sm-6 col-sm-offset-1 start-sm"><?php the_field('big_title'); ?></h1>
+						<h1 class="col-xs-12 center-xs col-md-7 col-md-offset-0 start-md"><?php the_field('big_title'); ?></h1>
+						<p class="proposition col-xs-12 center-xs col-md-7 col-md-offset-5 start-md"><?php the_field('proposition'); ?></p>
 					</div>
 					
 				<!-- 1 -->
@@ -191,13 +192,6 @@
 								echo '' . $term->name .'';
 						}
 						echo '</ul>';
-						
-							/*$terms = get_terms( 'label', 'orderby=count&hide_empty=0' );
-							echo '<ul>';
-							foreach( $terms as $term ):
-								echo '<li>&#35;' . $term->name . '</li>';
-							endforeach;
-							echo '</ul>';*/
 						?>
 					</div>
 					<button class="down">

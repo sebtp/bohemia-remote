@@ -71,7 +71,7 @@
 					</section>							
 
 				<!-- Content Footer -->
-					<?php echo get_the_term_list( $post->ID, 'label', '<footer class="tags col-xs"><div class="row"><li>&#35;', '</li><li>&#35;', '</li></div></footer>' ); ?>
+					<?php echo get_the_term_list( $post->ID, 'label', '<footer class="tags col-xs"><div class="row"><ul><li>', '</li><li>', '</li></ul></div></footer>' ); ?>
 				</article>
 			
 				
@@ -79,9 +79,47 @@
 
 				<aside class="col-xs col-sm-4 col-md-3">
 					<div>
-						<h4>Free download</h4>
+						<h4>Newsletter</h4>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
-						<button class="red-btn">Download Case-study</button>
+						<!-- Begin MailChimp Signup Form -->
+						<div id="mc_embed_signup">
+							<form action="//bohemiaamsterdam.us2.list-manage.com/subscribe/post?u=ff7aa484f44598d638542407c&amp;id=00529f1a03" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+								<div id="mc_embed_signup_scroll">
+
+									<div class="mc-field-group">
+										<label for="mce-EMAIL">Email Address<span class="asterisk">*</span></label>
+										<input type="email" value="" name="EMAIL" class="required email type" id="mce-EMAIL">
+									</div>
+									<div class="mc-field-group input-group">								
+										<ul>
+											<li>
+												<input type="radio" value="1" name="group[16389]" id="mce-group[16389]-16389-0">
+												<label for="mce-group[16389]-16389-0">Director</label>
+											</li>
+											<li>
+												<input type="radio" value="2" name="group[16389]" id="mce-group[16389]-16389-1">
+												<label for="mce-group[16389]-16389-1">Manager</label>
+											</li>
+											<li>
+												<input type="radio" value="4" name="group[16389]" id="mce-group[16389]-16389-2">
+												<label for="mce-group[16389]-16389-2">Creative</label>	</li>
+										</ul>
+									</div>
+									<div id="mce-responses" class="clear">
+										<div class="response" id="mce-error-response" style="display:none"></div>
+										<div class="response" id="mce-success-response" style="display:none"></div>
+									</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+
+									<div class="clear"><input type="submit" value="sign up" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+								</div>
+							</form>
+						</div>
+						<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+						<!--End mc_embed_signup-->			
+					</div>
+					<div>
+						<h4>Share</h4>
+						<?php echo do_shortcode('[ssba]'); ?> 
 					</div>
 				</aside>
 
@@ -110,7 +148,7 @@
 									$terms = wp_get_object_terms( $prev_post->ID, 'label' );
 									echo '<ul>';
 									foreach( $terms as $term ):
-										echo '<li>&#35;' . $term->name . '</li>';
+										echo '<li>' . $term->name . '</li>';
 									endforeach;
 									echo '</ul>';
 								?>
@@ -146,7 +184,7 @@
 									$terms = wp_get_object_terms( $next_post->ID, 'label' );
 									echo '<ul>';
 									foreach( $terms as $term ):
-										echo '<li>&#35;' . $term->name . '</li>';
+										echo '<li>' . $term->name . '</li>';
 									endforeach;
 									echo '</ul>';
 								?>

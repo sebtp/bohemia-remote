@@ -13,11 +13,16 @@
 		<title>Bohemia Amsterdam | <?php echo bloginfo( 'description' ); ?></title>
 		<?php } else if (is_tag()) { ?>
 		<title><?php single_tag_title(); ?> | Bohemia Amsterdam</title>
+		<?php } else if (is_tax('label')) { ?>
+		<title><?php single_term_title(); ?> | Bohemia Amsterdam</title>
+		<?php } else if (is_404()) { ?>
+		<title>Oops | Bohemia Amsterdam</title>
 		<?php } else { ?>
 		<title><?php the_title(); ?> | Bohemia Amsterdam</title>
 		<?php } ?>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 		
 		<link href="<?php bloginfo('template_directory');?>/style.css" rel="stylesheet">
@@ -55,24 +60,25 @@
 		$pagefile = get_page_template_slug();
 		if ( is_front_page() ) :
 		    echo '<body class="front-page">';
-		elseif ( $posttype == 'post' ) :
+		elseif ( $pagefile == 'page-contact.php' || is_404() || ($posttype == 'post' && !is_home() ) ) :
 		     echo '<body class="single-blog">';
-		elseif ( $posttype == 'work' ) :
+		elseif ( is_home() || is_tag() ) :
+		     echo '<body class="overview-blog">';
+		elseif ( $posttype == 'work' && !is_tax('label') ) :
 		     echo '<body class="single-work">';
 		elseif ( $posttype == 'team_members' ) :
 		     echo '<body class="single-about">';
-		elseif ( $pagefile == 'page-work.php' ) :
+		elseif ( $pagefile == 'page-work.php' || $posttype == 'clients' || is_tax('label') ) :
 		     echo '<body class="overview-work">';
 		elseif ( $pagefile == 'page-about.php' ) :
 		     echo '<body class="overview-about">';
-		elseif ( $pagefile == 'page-contact.php' ) :
-		     echo '<body class="single-blog">';
 		elseif ( $pagefile == 'page-clients.php' ) :
 		     echo '<body class="overview-clients">';
-		else : echo '<body class="overview-blog">';
+		elseif ( $pagefile == '' && !is_home() && !is_404() && !is_tag() && !is_tax('label') && $posttype != 'post' && $posttype != 'work' && $posttype != 'team_members' && $posttype != 'clients'  ) :
+			echo '<body class="single-work">';
+		else : echo '<body>';
 		endif;
 	?>
-
 		<!-- Clipping SVG for the hero image -->
 		<svg class="clip-svg">
 		  <defs>
@@ -84,7 +90,7 @@
 		</svg> 
  		  		 		 		
  		<!-- Clipping SVG for the Footer -->
-		<svg class="clip-svg" preserveAspectRatio="xMaxYMax meet">
+		<svg class="clip-svg">
 		  <defs>
 			<clippath id="clip-polygon-footer" clipPathUnits="objectBoundingBox">
 			  <polygon points="0 1, 0 0.55, 1 0, 1 1" />

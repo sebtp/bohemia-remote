@@ -1,3 +1,20 @@
+// Changing colors of header
+jQuery(document).ready(function($){ 
+	'use strict';
+	$("iframe").parent().addClass("iframe-parent");
+});
+
+// Changing colors of header
+jQuery(document).ready(function($){ 
+	'use strict';
+	if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1){
+		$("body").addClass("isSafari");
+	}
+	// detect IE8 and above, and edge
+	if (document.documentMode || /Edge/.test(navigator.userAgent)) {
+		$("body").addClass("isSafari");
+	}
+});
 
 // Changing colors of header
 jQuery(document).ready(function($){ 
@@ -95,6 +112,20 @@ jQuery(document).ready(function($){
 	} else {
 		//set inital color red
 		$.fn.setColor("red-bg","red");
+		
+		//CHANGE HEADER COLOR ON SCROLL PAST HEADER 
+		$(window).scroll(function() {		
+			var scroll = $(window).scrollTop(),
+				vph = $(window).height() / 3 * 2 - 40;
+
+			if ( (scroll >= vph) ) {
+				gradient.css("top", "-16rem");
+				logo.parent().css("margin-top", "-6rem");
+			} else {
+				gradient.css("top", "0rem");
+				logo.parent().css("margin-top", "0rem");
+			}
+		});
 	}
 	
 });
@@ -106,13 +137,14 @@ jQuery(document).ready(function($){
 		event.preventDefault();
 		$('.menu-wrapper').toggleClass('is-visible');
 		$('#ham').toggleClass('open');
-		//$(".gradient").fadeToggle("fast");
+		$(".gradient").css("top", "-16rem");
+		$("#ham>span").addClass("green-bg");
 	});
 	$('.menu-wrapper>.veil').click(function(event){
 		event.preventDefault();
 		$('.menu-wrapper').toggleClass('is-visible');
 		$('#ham').toggleClass('open');
-		//$(".gradient").fadeToggle("fast"); 
+		//$(".gradient").css("top", "0rem");		
 	});	
 });
 
