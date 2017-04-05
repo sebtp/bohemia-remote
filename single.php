@@ -77,7 +77,9 @@
 							</div>
 							<div class="row">
 								<div class="col-lg-8">
-									<?php the_field('author_bio', $authorid->ID ); ?>
+									<div class="row">
+										<?php the_field('author_bio', $authorid->ID ); ?>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -88,13 +90,7 @@
 			
 				
 		<!-- 	Sidebar -->
-				<aside class="col-xs col-sm-4 col-md-3">
-					<div>
-						<h4>Free download</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
-						<button class="green-btn">Download Case-study</button>
-					</div>
-				</aside>
+				<?php get_sidebar(); ?>
 
 			</div>
 		</main>
@@ -103,6 +99,7 @@
 		<section class="container-full">
 			<div class="row">
 				<?php
+				if( get_adjacent_post(false, '', true) ) { 
 				$prev_post = get_previous_post();
 				if (!empty( $prev_post )): ?>
 				<?php 
@@ -115,8 +112,8 @@
 					<span></span>
 					<img src="<?php echo $previmg[0]; ?>" alt="<?php echo $prevtitle ?>">	
 					<div class="row post-item-inner">
-							<div class="col-xs col-sm-11">
-							<h2><?php echo $prev_post->post_title; ?></h3>
+							<div class="col-xs-12 col-sm-11">
+							<h3><?php echo $prev_post->post_title; ?></h3>
 							<div class="tags">
 								<?php
 									   $posttags = get_the_tags($prevpostid);
@@ -133,7 +130,7 @@
 							<?php if( $prevauthor ): ?>
 							<?php foreach( $prevauthor as $prevauthor ): ?>
 							<?php $authorimg = wp_get_attachment_image_src( get_post_thumbnail_id( $prevauthor->ID), 'thumbnail'); ?>
-							<div class="author col-xs">
+							<div class="author col-xs-12">
 								<div class="author-wrapper row middle-xs">
 									<img src="<?php echo $authorimg[0]; ?>" alt="<?php echo get_the_title( $prevauthor->ID ); ?>">			
 									<div class="author-inner">
@@ -145,8 +142,53 @@
 							<?php endif; ?>
 					</div>
 				</a>
-				<?php endif; ?>
+				<?php 
+				endif; 
+				} else {
+					$first = new WP_Query('posts_per_page=1&order=ASC'); $first->the_post();
+					$previmg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full');
+					$prevauthor = get_field('blog_author');
+				?>
+				<a href="<?php echo get_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
+					<span></span>
+					<img src="<?php echo $previmg[0]; ?>" alt="<?php the_field('big_title'); ?>">	
+					<div class="row post-item-inner">
+							<div class="col-xs-12 col-sm-11">
+							<h3><?php echo the_field('big_title'); ?></h3>
+							<div class="tags">
+								<?php
+									   $posttags = get_the_tags();
+									   if ($posttags) {
+										  echo '<ul>'; 
+										  foreach($posttags as $tag) {
+											echo '<li>' . $tag->name . '</li>'; 
+										  }
+										  echo '</ul>';
+									   }
+									?>
+							</div>
+							</div>
+							<?php if( $prevauthor ): ?>
+							<?php foreach( $prevauthor as $prevauthor ): ?>
+							<?php $authorimg = wp_get_attachment_image_src( get_post_thumbnail_id( $prevauthor->ID), 'thumbnail'); ?>
+							<div class="author col-xs-12">
+								<div class="author-wrapper row middle-xs">
+									<img src="<?php echo $authorimg[0]; ?>" alt="<?php echo get_the_title( $prevauthor->ID ); ?>">			
+									<div class="author-inner">
+										<div class="row"><?php echo get_the_title( $prevauthor->ID ); ?></div>
+									</div>
+								</div>
+							</div>
+							<?php endforeach; ?>
+							<?php endif; ?>
+					</div>
+				</a>
 				<?php
+					wp_reset_query();
+				}
+				?>
+				<?php
+				if( get_adjacent_post(false, '', false) ) {
 				$next_post = get_next_post();
 				if (!empty( $next_post )): ?>
 				<?php 
@@ -159,9 +201,9 @@
 					<span></span>
 					<img src="<?php echo $nextimg[0]; ?>" alt="<?php echo $nexttitle ?>">	
 					<div class="row post-item-inner">
-							<div class="col-xs col-sm-11">
-							<h2><?php echo $next_post->post_title; ?></h3>
-							<div class="tags">
+							<div class="col-xs-12 col-sm-11">
+								<h3><?php echo $next_post->post_title; ?></h3>
+								<div class="tags">
 								<?php
 									   $posttags = get_the_tags($nextpostid);
 									   if ($posttags) {
@@ -172,12 +214,12 @@
 										  echo '</ul>';
 									   } 
 									?>
-							</div>
+								</div>
 							</div>
 							<?php if( $nextauthor ): ?>
 							<?php foreach( $nextauthor as $nextauthor ): ?>
 							<?php $authorimg2 = wp_get_attachment_image_src( get_post_thumbnail_id( $nextauthor->ID), 'thumbnail'); ?>
-							<div class="author col-xs">
+							<div class="author col-xs-12"> 
 								<div class="author-wrapper row middle-xs">
 									<img src="<?php echo $authorimg2[0]; ?>" alt="<?php echo get_the_title( $nextauthor->ID ); ?>">			
 									<div class="author-inner">
@@ -189,7 +231,48 @@
 							<?php endif; ?>
 					</div>
 				</a>
-				<?php endif; ?>
+				<?php 
+					endif;
+					} else {
+					$last = new WP_Query('posts_per_page=1&order=DESC'); $last->the_post();
+					$nextimg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full');
+					$nextauthor = get_field('blog_author');
+				?>
+				<a href="<?php echo get_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
+					<span></span>
+					<img src="<?php echo $nextimg[0]; ?>" alt="<?php the_field('big_title'); ?>">	
+					<div class="row post-item-inner">
+							<div class="col-xs-12 col-sm-11">
+								<h3><?php the_field('big_title'); ?></h3>
+								<div class="tags">
+								<?php
+									   $posttags = get_the_tags($nextpostid);
+									   if ($posttags) {
+										  echo '<ul>'; 
+										  foreach($posttags as $tag) {
+											echo '<li>' . $tag->name . '</li>'; 
+										  }
+										  echo '</ul>';
+									   } 
+									?>
+								</div>
+							</div>
+							<?php if( $nextauthor ): ?>
+							<?php foreach( $nextauthor as $nextauthor ): ?>
+							<?php $authorimg2 = wp_get_attachment_image_src( get_post_thumbnail_id( $nextauthor->ID), 'thumbnail'); ?>
+							<div class="author col-xs-12"> 
+								<div class="author-wrapper row middle-xs">
+									<img src="<?php echo $authorimg2[0]; ?>" alt="<?php echo get_the_title( $nextauthor->ID ); ?>">			
+									<div class="author-inner">
+										<div class="row"><?php echo get_the_title( $nextauthor->ID ); ?></div>
+									</div>
+								</div>
+							</div>
+							<?php endforeach; ?>
+							<?php endif; ?>
+					</div>
+				</a>
+				<?php wp_reset_query(); } ?>
 			</div>
 			<div class="tree">
 				<img src="<?php bloginfo('template_directory');?>/img/tree.jpg" alt="">

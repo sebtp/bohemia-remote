@@ -1,10 +1,10 @@
-// Changing colors of header
+// Finding the parent of an iframe
 jQuery(document).ready(function($){ 
 	'use strict';
 	$("iframe").parent().addClass("iframe-parent");
 });
 
-// Changing colors of header
+// Detecting Safari, IE8 and Edge
 jQuery(document).ready(function($){ 
 	'use strict';
 	if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1){
@@ -16,25 +16,54 @@ jQuery(document).ready(function($){
 	}
 });
 
+//Hover on scroll - mobile
+function isElementInViewport (elem) {
+			
+	if (elem.is(':visible')) {
+		if(elem.hasClass('scrolledIntoView')){
+			return false;
+		}
+            
+        var docViewTop = jQuery(window).scrollTop();
+        var docViewBottom = docViewTop + jQuery(window).height();
+        var elemTop = jQuery(elem).offset().top;
+        //var elemBottom = elemTop + $(elem).height();
+    
+        var distance =  Math.abs( elemTop - docViewTop  ), windowHeight = jQuery(window).height();
+        
+        if ( distance <= windowHeight / 3 ) { //
+            jQuery('.scrolledIntoView').removeClass('scrolledIntoView');
+            elem.addClass('scrolledIntoView');
+            return true;
+        }else{
+            elem.removeClass('scrolledIntoView');
+        }
+	}
+	
+	return false;
+}
+
 // Changing colors of header
 jQuery(document).ready(function($){ 
 	'use strict';
 	var hamburger = $("#ham>span"),
-		logo = $(".logo"),
-		phone = $(".phone"),
+		logo = $("#logo"),
+		phone = $("#phone"),
 		gradient = $(".gradient"),
 		body = $("body");
 	
-	// Function to be called to change the color and remove the gradient + logo
+	// Function to be called to set the initial color
 	$.fn.setColor = function(colorBg, color){
-        hamburger.addClass(colorBg);
-		phone.addClass(color);
+        hamburger.addClass(colorBg);		
+		phone.addClass(color);		
 		logo.addClass(color);
     };
 	
 	// Function to be called to change the color and remove the gradient + logo
 	$.fn.switchToColor = function(colorBg, color){
-        hamburger.addClass(colorBg);
+        //hamburger.removeClass();
+		//phone.removeClass();
+		hamburger.addClass(colorBg);
 		phone.addClass(color);
 		gradient.css("top", "-16rem");
 		logo.parent().css("margin-top", "-6rem");
@@ -97,7 +126,7 @@ jQuery(document).ready(function($){
 			}
 		});
 		
-	} else if (body.hasClass("single-work") || body.hasClass("single-anout")) {
+	} else if (body.hasClass("single-work") || body.hasClass("single-about")) {
 		//CHANGE HEADER COLOR ON SCROLL PAST HEADER 
 		$(window).scroll(function() {		
 			var scroll = $(window).scrollTop(),
@@ -133,18 +162,28 @@ jQuery(document).ready(function($){
 // Hamburger toggle animation
 jQuery(document).ready(function($){
 	'use strict';
+	
 	$('#ham').click(function(event) {
-		event.preventDefault();
-		$('.menu-wrapper').toggleClass('is-visible');
-		$('#ham').toggleClass('open');
-		$(".gradient").css("top", "-16rem");
-		$("#ham>span").addClass("green-bg");
+		if ($('#ham').hasClass('open')) {
+			//When closing the menu
+			event.preventDefault();
+			$('.menu-wrapper').removeClass('is-visible');
+			$('#ham').removeClass('open');
+			$(".gradient").css("top", "0rem");
+		}else{
+			//When opening the menu
+			event.preventDefault();
+			$('.menu-wrapper').addClass('is-visible');
+			$('#ham').addClass('open');
+			$(".gradient").css("top", "-16rem");
+		}
 	});
+	
 	$('.menu-wrapper>.veil').click(function(event){
 		event.preventDefault();
-		$('.menu-wrapper').toggleClass('is-visible');
-		$('#ham').toggleClass('open');
-		//$(".gradient").css("top", "0rem");		
+		$('.menu-wrapper').removeClass('is-visible');
+		$('#ham').removeClass('open');
+		$(".gradient").css("top", "0rem");		
 	});	
 });
 

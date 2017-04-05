@@ -6,21 +6,7 @@
 	<head>
 		<meta charset="<?php bloginfo( 'charset' ); ?>" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<?php if (is_blog()) { ?>
-		<?php $posts_page = get_option( 'page_for_posts' ); ?>
-		<title><?php echo get_post( $posts_page )->post_title; ?> | Bohemia Amsterdam</title>
-		<?php } else if (is_front_page()) { ?>
-		<title>Bohemia Amsterdam | <?php echo bloginfo( 'description' ); ?></title>
-		<?php } else if (is_tag()) { ?>
-		<title><?php single_tag_title(); ?> | Bohemia Amsterdam</title>
-		<?php } else if (is_tax('label')) { ?>
-		<title><?php single_term_title(); ?> | Bohemia Amsterdam</title>
-		<?php } else if (is_404()) { ?>
-		<title>Oops | Bohemia Amsterdam</title>
-		<?php } else { ?>
-		<title><?php the_title(); ?> | Bohemia Amsterdam</title>
-		<?php } ?>
-		<meta name="description" content="">
+		<title><?php wp_title(' | ',TRUE,'right'); ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -60,7 +46,7 @@
 		$pagefile = get_page_template_slug();
 		if ( is_front_page() ) :
 		    echo '<body class="front-page">';
-		elseif ( $pagefile == 'page-contact.php' || is_404() || ($posttype == 'post' && !is_home() ) ) :
+		elseif ( $pagefile == 'page-contact.php' || is_404() || ($posttype == 'post' && !is_home() && !is_tag() ) || $pagefile == 'page-jobs.php' ) :
 		     echo '<body class="single-blog">';
 		elseif ( is_home() || is_tag() ) :
 		     echo '<body class="overview-blog">';
@@ -121,10 +107,10 @@
 						<button id="ham"><span></span><span></span><span></span><span></span></button>
 					</div>
 					<div class="col-md-4">
-						<a class="logo" href="<?php echo get_home_url(); ?>"><strong>Bohemia</strong> Amsterdam</a>
+						<a id="logo" href="<?php echo get_home_url(); ?>"><strong>Bohemia</strong> Amsterdam</a>
 					</div>
 					<div class="col-xs-8 col-md-4">
-						<a class="phone">&#43;31 (0)20 42 33 555</a>
+						<a href="tel:0031204233555" id="phone">&#43;31 (0)20 42 33 555</a>
 					</div>
 				</div>
 			</div>			

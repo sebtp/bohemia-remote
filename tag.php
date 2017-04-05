@@ -2,10 +2,10 @@
 
 <!-- 	The hero image. echo the url instead of: http://lorempixel.com/1920/1080-->
 		<div class="hero container-full" style="background-image: url(<?php bloginfo('template_directory');?>/img/hero_blog.jpg)">
-			<div class="row">
-				<div class="col-xs col-sm-6 col-md-5 col-md-offset-1 col-lg-4">
-					<h1><?php single_tag_title(); ?></h1>
-					<div class="white-bg"><?php echo tag_description(); ?></div>
+			<div class="row middle-xs">
+				<div>
+					<h1 class="col-xs col-sm-9 col-md-offset-1"><?php single_tag_title(); ?></h1>
+					<div class="white-bg col-xs col-sm-6 col-md-5 col-md-offset-1 col-lg-4"><?php echo tag_description(); ?></div>
 				</div>
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 									   if ($posttags) {
 										  echo '<ul>'; 
 										  foreach($posttags as $tag) {
-											echo '<li>&#35;' . $tag->name . '</li>'; 
+											echo '<li>' . $tag->name . '</li>'; 
 										  }
 										  echo '</ul>';
 									   }

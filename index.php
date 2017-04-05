@@ -29,7 +29,7 @@
 					<img src="<?php echo $figm[0]; ?>" alt="<?php the_title(); ?>">						
 					<div class="row post-item-inner">
 						<div class="col-sm-11">
-							<h2 class="col-xs"><?php the_title(); ?></h2>
+							<h2 class="col-xs"><?php the_field('big_title'); ?></h2>
 							<div class="tags col-xs col-xlg-9">
 								<?php
 									   $posttags = get_the_tags();

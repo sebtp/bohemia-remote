@@ -1,4 +1,4 @@
-<?php /* Template Name: Contact*/ ?>
+<?php /* Template Name: Jobs*/ ?>
 <?php get_header(); ?>
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
@@ -11,7 +11,7 @@
 			background-image: url('<?php echo the_post_thumbnail_url( 'full' ); ?>'), -ms-linear-gradient(45deg,#0046b4,#46beaf);
 			background-image: url('<?php echo the_post_thumbnail_url( 'full' ); ?>'), linear-gradient(45deg,#0046b4,#46beaf);
 			"></div>
-  		
+
 <!-- 	The main content -->
 		<main class="container-fluid relative">
 			<div class="row">
@@ -26,38 +26,57 @@
 
 				<!-- Intro -->
 					<section class="intro col-xs col-sm-7 col-md-offset-1">
-						<?php the_field('intro_text'); ?>
+						<?php the_content(); ?>
 					</section>
 
 				<!-- Content -->
 					<section class="content">
-						<?php the_content(); ?>
-						<div><?php the_field('google_maps'); ?></div>
+						<?php
+							$tm_args = array(
+								'post_type' => 'jobs',
+								'posts_per_page' => 100
+							);
+							$tm_query = new WP_Query( $tm_args );
+						?>
+						<?php if( $tm_query->have_posts() ): ?>
+						<?php while( $tm_query->have_posts() ) : $tm_query->the_post(); ?>
+						<article>
+							<h1><?php the_title(); ?></h1>
+							<section>
+								<?php the_content(); ?>
+								<?php
+									$thispost = get_the_ID();
+									$thispostlink = get_permalink( $thispost );
+									if(strpos($thispostlink,'nl')>0){
+										$languagebutton = 'Solliciteer';
+									} else {
+										$languagebutton = 'Apply';
+									}
+								?>
+								<a href="mailto:<?php the_field('mailto'); ?>?SUBJECT=<?php the_title(); ?>"><?php echo $languagebutton ?></a>
+							</section>
+						</article>
+						<?php endwhile; ?>
+						<?php endif; ?>
+		    			<?php wp_reset_query(); ?>	
 					</section>							
 
 				</article>
 			
 		<!-- 	Sidebar -->
+				<?php get_sidebar(); ?>
+
 				
-
-
 			</div>
+			
 		</main>
-		
-<!-- 	Contact form -->
-		<section class="contact-form container-full">
-			<div class="row center-xs">
-				<h2 class="col-xs"><?php the_field('formulier_titel'); ?></h2>
-			</div>
-			<div class="row center-xs">				
-				<div class="col-xs-12 col-sm-7 col-md-5 col-lg-4 col-xlg-3">
-					<?php the_field('contactformulier'); ?>
+		<div class="tree">
+					<img src="<?php bloginfo('template_directory');?>/img/tree.jpg" alt="">
 				</div>
-			</div>
-			<div class="tree">
-				<img src="<?php bloginfo('template_directory');?>/img/tree.jpg" alt="">
-			</div>
-		</section>
+
+
+
+
 
 <?php endwhile; endif; ?>
 <?php get_footer(); ?>

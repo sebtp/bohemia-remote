@@ -33,7 +33,7 @@
 					<img src="<?php echo $figm[0]; ?>" alt="<?php the_title(); ?>">	
 					<div class="row post-item-inner">
 						<div class="col-xs col-sm-11">
-							<h2><?php the_title(); ?></h2>
+							<h3><?php the_title(); ?></h3>
 							<div class="quote">
 								<?php if( get_field('quote') ): ?>
 									&ldquo;<?php the_field('quote'); ?>&rdquo;

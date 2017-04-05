@@ -57,13 +57,7 @@
 			
 				
 		<!-- 	Sidebar -->
-				<aside class="col-xs col-sm-4 col-md-3">
-					<div>
-						<h4>Free download</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
-						<button class="green-btn">Download Case-study</button>
-					</div>
-				</aside>
+				<?php get_sidebar(); ?>
 
 			</div>
 		</main>

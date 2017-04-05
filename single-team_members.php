@@ -30,7 +30,7 @@
 
 				<!-- Intro -->
 					<section class="intro col-xs col-sm-7 col-md-offset-1">
-						<?php the_field('intro_text'); ?>
+						&ldquo;<?php the_field('quote'); ?>&rdquo;
 					</section>
 
 				<!-- Content -->
@@ -39,15 +39,6 @@
 					</section>							
 
 				</article>
-			
-				
-		<!-- 	Sidebar -->
-
-				<aside class="col-md-4">
-					<h4>aside</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sodales urna non odio egestas tempor. Nunc vel vehicula ante. Etiam bibendum iaculis libero, eget molestie nisl pharetra in. In semper consequat est, eu porta velit mollis nec. Curabitur posuere enim eget turpis feugiat tempor. Etiam ullamcorper lorem dapibus velit suscipit ultrices.</p>
-				</aside>
-
 
 			</div>
 		</main>
@@ -56,19 +47,19 @@
 		<section class="container-full work-bg">
 			<div class="row">
 				<?php
+				if( get_adjacent_post(false, '', true) ) { 
 				$prev_post = get_previous_post();
 				if (!empty( $prev_post )): ?>
 				<?php 
 				$prevpostid = $prev_post->ID;
 				$previmg = wp_get_attachment_image_src( get_post_thumbnail_id($prevpostid), 'full');
-
 				?>
 				<a href="<?php echo get_permalink( $prev_post->ID ); ?>" class="col-xs-12 col-md-6 post-item">
 					<span></span>
 					<img src="<?php echo $previmg[0]; ?>" alt="<?php echo $prev_post->post_title; ?>">	
 					<div class="row post-item-inner">
 						<div class="col-xs col-sm-11">
-							<h2><?php echo $prev_post->post_title; ?></h2>
+							<h3><?php echo $prev_post->post_title; ?></h3>
 							<div class="quote">
 								<?php if( get_field('quote', $prevpostid) ): ?>
 									&ldquo;<?php the_field('quote', $prevpostid); ?>&rdquo;
@@ -78,21 +69,42 @@
 						</div>
 					</div>
 				</a>
-				<?php endif; ?>					
+				<?php endif; ?>
+				<?php 
+					} else { 
+					$first = new WP_Query('post_type=team_members&posts_per_page=1&order=ASC'); $first->the_post();
+					$previmg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full');
+				?>
+				<a href="<?php echo get_permalink( ); ?>" class="col-xs-12 col-md-6 post-item">
+					<span></span>
+					<img src="<?php echo $previmg[0]; ?>" alt="<?php the_title(); ?>">	
+					<div class="row post-item-inner">
+						<div class="col-xs col-sm-11">
+							<h3><?php the_title(); ?></h3>
+							<div class="quote">
+								<?php if( get_field('quote') ): ?>
+									&ldquo;<?php the_field('quote'); ?>&rdquo;
+								<?php endif; ?>
+							</div>
+							<div class="position"><?php the_field('job_title'); ?></div>
+						</div>
+					</div>
+				</a>
+				<?php wp_reset_query(); } ?>				
 				<?php
+				if( get_adjacent_post(false, '', false) ) {
 				$next_post = get_next_post();
 				if (!empty( $next_post )): ?>
 				<?php 
 				$nextpostid = $next_post->ID;
 				$nextimg = wp_get_attachment_image_src( get_post_thumbnail_id($nextpostid), 'full');
-
 				?>
 				<a href="<?php echo get_permalink( $next_post->ID ); ?>" class="col-xs-12 col-md-6 post-item">
 					<span></span>
 					<img src="<?php echo $nextimg[0]; ?>" alt="<?php echo $next_post->post_title; ?>">	
 					<div class="row post-item-inner">
 						<div class="col-xs col-sm-11">
-							<h2><?php echo $next_post->post_title; ?></h2>
+							<h3><?php echo $next_post->post_title; ?></h3>
 							<div class="quote">
 								<?php if( get_field('quote', $nextpostid) ): ?>
 									&ldquo;<?php the_field('quote', $nextpostid); ?>&rdquo;
@@ -102,7 +114,28 @@
 						</div>
 					</div>
 				</a>
-				<?php endif; ?>
+				<?php 
+					endif; 
+				} else {
+					$last = new WP_Query('post_type=team_members&posts_per_page=1&order=DESC'); $last->the_post();
+					$nextimg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full');
+				?>
+				<a href="<?php echo get_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
+					<span></span>
+					<img src="<?php echo $nextimg[0]; ?>" alt="<?php the_title(); ?>">	
+					<div class="row post-item-inner">
+						<div class="col-xs col-sm-11">
+							<h3><?php the_title(); ?></h3>
+							<div class="quote">
+								<?php if( get_field('quote') ): ?>
+									&ldquo;<?php the_field('quote'); ?>&rdquo;
+								<?php endif; ?>
+							</div>
+							<div class="position"><?php the_field('job_title'); ?></div>
+						</div>
+					</div>
+				</a>
+				<?php wp_reset_query(); } ?>
 			</div>
 			<div class="tree">
 				<img src="<?php bloginfo('template_directory');?>/img/tree.jpg" alt="">

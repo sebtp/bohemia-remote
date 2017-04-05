@@ -5,7 +5,7 @@
 		<div class="hero clip-svg-hero" style="background-image: url('<?php echo the_post_thumbnail_url( 'full' ); ?>');"></div>
   		
 <!-- 	The main content -->
-		<main class="container-fluid">
+		<main class="container-fluid relative">
 			<div class="clearfix row">
 				<article class="col-xs-12"> 
 					
@@ -61,7 +61,7 @@
 					</header>
 
 				<!-- Intro -->
-					<section class="intro col-xs col-sm-7 col-md-offset-1">
+					<section class="intro col-xs col-sm-8 col-md-7 col-md-offset-1">
 						<?php the_field('intro_text'); ?>
 					</section>
 
@@ -76,54 +76,8 @@
 			
 				
 		<!-- 	Sidebar -->
-
-				<aside class="col-xs col-sm-4 col-md-3">
-					<div>
-						<h4>Newsletter</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
-						<!-- Begin MailChimp Signup Form -->
-						<div id="mc_embed_signup">
-							<form action="//bohemiaamsterdam.us2.list-manage.com/subscribe/post?u=ff7aa484f44598d638542407c&amp;id=00529f1a03" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-								<div id="mc_embed_signup_scroll">
-
-									<div class="mc-field-group">
-										<label for="mce-EMAIL">Email Address<span class="asterisk">*</span></label>
-										<input type="email" value="" name="EMAIL" class="required email type" id="mce-EMAIL">
-									</div>
-									<div class="mc-field-group input-group">								
-										<ul>
-											<li>
-												<input type="radio" value="1" name="group[16389]" id="mce-group[16389]-16389-0">
-												<label for="mce-group[16389]-16389-0">Director</label>
-											</li>
-											<li>
-												<input type="radio" value="2" name="group[16389]" id="mce-group[16389]-16389-1">
-												<label for="mce-group[16389]-16389-1">Manager</label>
-											</li>
-											<li>
-												<input type="radio" value="4" name="group[16389]" id="mce-group[16389]-16389-2">
-												<label for="mce-group[16389]-16389-2">Creative</label>	</li>
-										</ul>
-									</div>
-									<div id="mce-responses" class="clear">
-										<div class="response" id="mce-error-response" style="display:none"></div>
-										<div class="response" id="mce-success-response" style="display:none"></div>
-									</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-
-									<div class="clear"><input type="submit" value="sign up" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-								</div>
-							</form>
-						</div>
-						<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-						<!--End mc_embed_signup-->			
-					</div>
-					<div>
-						<h4>Share</h4>
-						<?php echo do_shortcode('[ssba]'); ?> 
-					</div>
-				</aside>
-
-
+			<?php get_sidebar(); ?>
+		
 			</div>
 		</main>
 		
@@ -131,6 +85,7 @@
 		<section class="container-full work-bg">
 			<div class="row">
 				<?php
+				if( get_adjacent_post(false, '', true) ) { 
 				$prev_post = get_previous_post();
 				if (!empty( $prev_post )): ?>
 				<?php 
@@ -165,8 +120,43 @@
 						</div>
 					</div>
 				</a>
-				<?php endif; ?>					
+				<?php 
+					endif; 
+				} else {
+					$first = new WP_Query('post_type=work&posts_per_page=1&order=ASC'); $first->the_post();
+					$previmg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full');
+					$prevclient = get_field('client_name');
+				?>
+				<a href="<?php the_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
+					<img src="<?php echo $previmg[0]; ?>" alt="<?php the_title(); ?>">	
+					<div class="row post-item-inner">
+						<div class="col-xs-11">
+							<h3 class="col-xs"><?php the_title(); ?></h3>
+							<div class="tags col-xs-9">
+								<?php
+									$terms = wp_get_object_terms( $post->ID, 'label' );
+									echo '<ul>';
+									foreach( $terms as $term ):
+										echo '<li>' . $term->name . '</li>';
+									endforeach;
+									echo '</ul>';
+								?>
+							</div>
+							<div class="client col-xs-9">
+							<?php 
+								foreach( $prevclient as $post ):
+									setup_postdata($post);
+									the_title();
+								endforeach;
+								wp_reset_postdata();
+							?>
+							</div>
+						</div>
+					</div>
+				</a>
+				<?php wp_reset_query(); } ?>				
 				<?php
+				if( get_adjacent_post(false, '', false) ) {
 				$next_post = get_next_post();
 				if (!empty( $next_post )): ?>
 				<?php 
@@ -201,7 +191,41 @@
 						</div>
 					</div>
 				</a>
-				<?php endif; ?>
+				<?php 
+					endif; 
+				} else {
+					$last = new WP_Query('post_type=work&posts_per_page=1&order=DESC'); $last->the_post();
+					$nextimg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full');
+					$nextclient = get_field('client_name');
+				?>
+				<a href="<?php echo get_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
+					<img src="<?php echo $nextimg[0]; ?>" alt="<?php the_title(); ?>">	
+					<div class="row post-item-inner">
+						<div class="col-xs-11">
+							<h3 class="col-xs"><?php the_title(); ?></h3>
+							<div class="tags col-xs-9">
+								<?php
+									$terms = wp_get_object_terms( $post->ID, 'label' );
+									echo '<ul>';
+									foreach( $terms as $term ):
+										echo '<li>' . $term->name . '</li>';
+									endforeach;
+									echo '</ul>';
+								?>
+							</div>
+							<div class="client col-xs-9">
+							<?php 
+								foreach( $nextclient as $post ):
+									setup_postdata($post);
+									the_title();
+								endforeach;
+								wp_reset_postdata();
+							?>
+							</div>
+						</div>
+					</div>
+				</a>
+				<?php wp_reset_query(); } ?>
 			</div>
 			<div class="tree">
 				<img src="<?php bloginfo('template_directory');?>/img/tree.jpg" alt="">
