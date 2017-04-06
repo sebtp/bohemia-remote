@@ -16,6 +16,31 @@ jQuery(document).ready(function($){
 	}
 });
 
+
+//Gallery masonry init
+jQuery(document).ready(function($){ 
+	//Add the masonry class to all but first 3
+	$(".gallery>.gallery-item:not(:first-of-type)").addClass("small-img");
+	$(".gallery>.gallery-item:first-of-type").addClass("big-img");
+	
+	// init Isotope
+	var $grid = $('.gallery').isotope({
+		// options
+		itemSelector: '.small-img',
+		stamp: '.big-img',
+		masonry: {
+			gutter: 30,
+			transitionDuration: '0.2s'
+		}
+		
+	});
+	// layout Isotope after each image loads
+	$grid.imagesLoaded().progress( function() {
+	  $grid.isotope('layout');
+	});
+	
+});
+
 //Hover on scroll - mobile
 function isElementInViewport (elem) {
 			

@@ -32,9 +32,9 @@
 			</div>		
 		</footer>
 
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
-		<script>window.jQuery || document.write('<script src="<?php bloginfo('template_directory');?>/js/vendor/jquery-1.11.2.js"><\/script>')</script>
-
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+		<script src="https://unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
 		<script src="<?php bloginfo('template_directory');?>/js/main.js"></script>
 		
 		<?php wp_footer(); ?>

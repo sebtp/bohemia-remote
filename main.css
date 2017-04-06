@@ -1148,7 +1148,7 @@ button, form input[type=submit], #mc_embed_signup input[type=submit], form input
   -moz-transition: all, 0.3s, ease;
   -o-transition: all, 0.3s, ease;
   transition: all, 0.3s, ease; }
-  @media only screen and (min-width: 48rem) {
+  @media only screen and (min-width: 64rem) {
     button, form input[type=submit], #mc_embed_signup input[type=submit], form input.button, #mc_embed_signup input.button, a.red-btn, a.green-btn, a.outline-white, a.outline-green {
       line-height: 2.9;
       font-size: 2.1rem;
@@ -1770,7 +1770,7 @@ time {
   margin-left: .5rem; }
 
 /* scss/atoms/_caption.scss */
-figcaption {
+figcaption, .gallery-caption {
   font-family: "brandon-grotesque", Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
   color: #9ca8b7; }
@@ -1875,23 +1875,28 @@ a {
 /* scss/molecules/_gallery.scss */
 .gallery {
   margin-top: 7rem; }
-  .gallery img {
-    padding: 0;
-    margin: 0.25rem 0;
-    width: 100% !important; }
-    .gallery img:nth-of-type(n+4) {
-      margin: 0;
-      width: calc((100% / 3) - 2rem ) !important;
-      padding: 1.25rem 1.5rem; }
-    .gallery img:nth-child(3n+4) {
-      padding-left: 0; }
-    .gallery img:nth-child(3n+6) {
-      padding-right: 0; }
+  .gallery .gallery-item {
+    width: 100%;
+    margin-bottom: 2rem; }
+    @media only screen and (min-width: 48rem) {
+      .gallery .gallery-item {
+        width: calc(100% / 2 - 2rem); } }
+    @media only screen and (min-width: 64rem) {
+      .gallery .gallery-item {
+        width: calc(100% / 3 - 2rem); } }
+    .gallery .gallery-item img {
+      width: 100%;
+      height: auto;
+      border: 0 !important; }
+  .gallery dl.big-img {
+    position: absolute;
+    width: 100%;
+    height: auto; }
 
 /* scss/molecules/_header.scss */
 #header {
   position: fixed;
-  z-index: 9999;
+  z-index: 101;
   width: 100%;
   padding-top: 1.5rem; }
   #header .gradient {
@@ -1956,7 +1961,7 @@ a {
 /* slideout menu */
 .menu-wrapper {
   position: fixed;
-  z-index: 1000;
+  z-index: 100;
   top: 0;
   left: 0;
   height: 100%;
@@ -2688,7 +2693,7 @@ aside #mc_embed_signup {
     opacity: .7; }
   .front-page .three .bg-img {
     z-index: -4;
-    bottom: 0;
+    bottom: 9rem;
     width: 200vw; }
   .front-page .three .desc-bg {
     display: none; }
@@ -2720,16 +2725,18 @@ aside #mc_embed_signup {
       transform: skewX(-2deg); } }
   @media only screen and (min-width: 64rem) {
     .front-page .three .bg-img {
-      width: 100vw; } }
+      width: 100vw;
+      top: 28rem;
+      bottom: 0; } }
   @media only screen and (min-width: 100.1rem) {
     .front-page .three .bg-img {
       top: 5rem; } }
   @media only screen and (min-width: 100.1rem) and (min-width: 100.1rem) {
     .front-page .three .bg-img {
-      top: calc(5rem + -37 * ((100vw - 160.16rem) / 95.84)); } }
+      top: calc(5rem + -15 * ((100vw - 160.16rem) / 95.84)); } }
   @media only screen and (min-width: 100.1rem) and (min-width: 160rem) {
     .front-page .three .bg-img {
-      top: -32rem; } }
+      top: -10rem; } }
   @media only screen and (min-width: 100.1rem) {
     .front-page .three .desc-bg {
       width: 43%; } }
@@ -2853,11 +2860,15 @@ aside #mc_embed_signup {
   position: fixed;
   top: 0;
   right: 0;
+  display: none;
   padding-top: 4rem;
   margin: 0;
   font-style: italic;
   height: 100%;
   mix-blend-mode: difference; }
+  @media only screen and (min-width: 75rem) {
+    .front-page main aside, .overview-work main aside {
+      display: block; } }
   .front-page main aside .fixed-wrapper, .overview-work main aside .fixed-wrapper {
     overflow: hidden;
     position: relative;

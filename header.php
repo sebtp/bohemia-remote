@@ -14,7 +14,7 @@
 		<link href="<?php bloginfo('template_directory');?>/style.css" rel="stylesheet">
 		<link rel="stylesheet" href="<?php bloginfo('template_directory');?>/main.css">
 
-		<script src="<?php bloginfo('template_directory');?>/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<!--		<script src="<?php //bloginfo('template_directory');?>/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>-->
 		<script src="//use.typekit.net/oar8kez.js"></script>
 		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 		<?php wp_head();?>

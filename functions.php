@@ -62,17 +62,21 @@ function is_blog () {
 }
 
 // Gallery format
-add_filter('post_gallery','customFormatGallery',10,2);
+// Remove default gallery style
+add_filter( 'use_default_gallery_style', '__return_false' );
+/*add_filter('post_gallery','customFormatGallery',10,2);
 
 function customFormatGallery($string,$attr){
     $output = "<section class=\"gallery\">";
     $posts = get_posts(array('include' => $attr['ids'],'post_type' => 'attachment'));
     foreach($posts as $imagePost){
-        $output .= "<img src='".wp_get_attachment_image_src($imagePost->ID, 'full')[0]."'>";
+		$image_link = wp_get_attachment_image_src($imagePost->ID, 'full')[0];
+		$image_alt = get_post_meta( $imagePost->ID, '_wp_attachment_image_alt', true);
+        $output .= "<a href=".$image_link." alt=".$image_alt."><img src='".$image_link."'>";
     }
     $output .= "</section>";
     return $output;
-}
+}*/
 
 // Allow SVG uploads
 function cc_mime_types($mimes) {
