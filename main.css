@@ -1310,7 +1310,7 @@ form .single-about input.button,
     #ham span:nth-child(4) {
       top: 1.8rem; }
   #ham.open span {
-    background: #46beaf; }
+    background: #46beaf !important; }
     #ham.open span:nth-child(1) {
       top: 0.9rem;
       width: 0%;
@@ -1491,18 +1491,18 @@ h2 {
     padding-top: 2.365rem; }
     @media screen and (min-width: 48rem) {
       h2 {
-        padding-top: calc(2.365rem + 1.505 * ((100vw - 76.8rem) / 43.2)); } }
+        padding-top: calc(2.365rem + 2.279 * ((100vw - 76.8rem) / 43.2)); } }
     @media screen and (min-width: 75rem) {
       h2 {
-        padding-top: 3.87rem; } }
+        padding-top: 4.644rem; } }
   h2 {
     padding-bottom: 2.365rem; }
     @media screen and (min-width: 48rem) {
       h2 {
-        padding-bottom: calc(2.365rem + 1.505 * ((100vw - 76.8rem) / 43.2)); } }
+        padding-bottom: calc(2.365rem + 2.279 * ((100vw - 76.8rem) / 43.2)); } }
     @media screen and (min-width: 75rem) {
       h2 {
-        padding-bottom: 3.87rem; } }
+        padding-bottom: 4.644rem; } }
 
 h3 {
   padding: 1.72rem 0;
@@ -1685,14 +1685,15 @@ h4 {
 
 /* scss/atoms/_hero.scss */
 .hero {
-  min-height: 90vh;
+  min-height: 80vh;
   overflow: hidden;
   background-size: cover;
   background-position: center;
-  background-blend-mode: screen; }
-  .hero > div {
+  background-blend-mode: screen;
+  position: relative; }
+  .hero > div:first-child {
     padding-top: 8rem;
-    min-height: 90vh;
+    min-height: 80vh;
     -webkit-transition: all, 0.3s, ease;
     -moz-transition: all, 0.3s, ease;
     -o-transition: all, 0.3s, ease;
@@ -1700,7 +1701,7 @@ h4 {
   .hero .white-bg {
     padding: 2rem;
     font-family: "brandon-grotesque", Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 200; }
+    font-weight: 300; }
     .hero .white-bg {
       font-size: 2.1rem; }
       @media screen and (min-width: 48rem) {
@@ -1709,6 +1710,19 @@ h4 {
       @media screen and (min-width: 75rem) {
         .hero .white-bg {
           font-size: 2.4rem; } }
+  .hero svg {
+    width: 100%; }
+  .hero .svg-container {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    vertical-align: bottom;
+    overflow: hidden; }
+  .hero .svg-single {
+    position: absolute;
+    display: inline-block;
+    bottom: -0.1rem; }
 
 .clip-svg-hero {
   -webkit-clip-path: url("#clip-polygon-hero");
@@ -1717,6 +1731,26 @@ h4 {
 @media only screen and (min-height: 47rem) {
   .hero > div {
     padding-top: 0; } }
+.svg-overview {
+  width: 102%;
+  background-image: url(http://new.bohemiaamsterdam.com/nl/wp-content/themes/bohemia-amsterdam/img/hero-poly-down.svg);
+  background-size: cover;
+  height: 0;
+  padding: 0;
+  /* reset */
+  margin: -0.5% -1% 0 -1%;
+  padding-bottom: 12%; }
+
+.svg-footer {
+  width: 102%;
+  background-image: url(http://new.bohemiaamsterdam.com/nl/wp-content/themes/bohemia-amsterdam/img/hero-poly-up.svg);
+  background-size: cover;
+  height: 0;
+  padding: 0;
+  /* reset */
+  margin: -0.5% -1% 0 -1%;
+  padding-bottom: 12%; }
+
 /* scss/atoms/_tags.scss */
 .tags {
   margin-top: 4rem;
@@ -1726,9 +1760,18 @@ h4 {
     .tags ul li {
       font-family: "livory", Times, "Times New Roman", serif;
       font-style: italic;
+      font-size: 2.1rem;
       color: #ffffff;
       display: inline-block;
       padding-right: 2rem; }
+      .tags ul li {
+        font-size: 1.8rem; }
+        @media screen and (min-width: 20rem) {
+          .tags ul li {
+            font-size: calc(1.8rem + 0.3 * ((100vw - 32rem) / 128.16)); } }
+        @media screen and (min-width: 100.1rem) {
+          .tags ul li {
+            font-size: 2.1rem; } }
       .tags ul li a {
         text-decoration: none;
         -webkit-transition: all, 0.3s, ease;
@@ -1760,7 +1803,7 @@ h4 {
 /* scss/atoms/_date.scss */
 time {
   font-family: "brandon-grotesque", Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   font-size: 1.8rem;
   background-image: url(http://new.bohemiaamsterdam.com/nl/wp-content/themes/bohemia-amsterdam/img/dot-blue.svg);
   background-repeat: no-repeat;
@@ -1862,14 +1905,10 @@ a {
     text-decoration: underline; }
 
 .single-work a,
-.single-about a,
-.overview-work a,
-.overview-about a,
-.overview-clients a {
+.single-about a {
   color: #fa5f69; }
 
-.single-blog a,
-.overview-blog a {
+.single-blog a {
   color: #46beaf; }
 
 /* scss/molecules/_gallery.scss */
@@ -2093,18 +2132,15 @@ a {
   text-decoration: none;
   position: relative;
   overflow: hidden;
-  transition: all .3s ease-in-out;
-  /*&:nth-child(even) {
-  	margin-top: -6vh;
-  }*/ }
+  transition: all .3s ease-in-out; }
   .post-item {
-    height: 40vw; }
+    height: 185vw; }
     @media screen and (min-width: 16rem) {
       .post-item {
         height: calc(185vw + -145 * ((100vw - 25.6rem) / 76.8)); } }
     @media screen and (min-width: 64rem) {
       .post-item {
-        height: 185vw; } }
+        height: 40vw; } }
   .post-item:hover {
     outline: 0; }
   .post-item:hover img {
@@ -2129,13 +2165,13 @@ a {
         .post-item .post-item-inner {
           padding-left: 4rem; } }
     .post-item .post-item-inner {
-      bottom: 2rem; }
+      bottom: 2.5rem; }
       @media screen and (min-width: 64rem) {
         .post-item .post-item-inner {
-          bottom: calc(2rem + 3 * ((100vw - 102.4rem) / 57.76)); } }
+          bottom: calc(2.5rem + 1.5 * ((100vw - 102.4rem) / 57.76)); } }
       @media screen and (min-width: 100.1rem) {
         .post-item .post-item-inner {
-          bottom: 5rem; } }
+          bottom: 4rem; } }
     .post-item .post-item-inner h2, .post-item .post-item-inner h3 {
       -ms-word-break: break-word;
       word-break: break-word;
@@ -2151,27 +2187,27 @@ a {
         font-size: 5.5rem; }
         @media screen and (min-width: 20rem) {
           .post-item .post-item-inner h2, .post-item .post-item-inner h3 {
-            font-size: calc(5.5rem + 3.5 * ((100vw - 32rem) / 128.16)); } }
-        @media screen and (min-width: 100.1rem) {
+            font-size: calc(5.5rem + 5.3 * ((100vw - 32rem) / 160)); } }
+        @media screen and (min-width: 120rem) {
           .post-item .post-item-inner h2, .post-item .post-item-inner h3 {
-            font-size: 9rem; } }
+            font-size: 10.8rem; } }
       .post-item .post-item-inner h2, .post-item .post-item-inner h3 {
         padding-top: 2.365rem; }
         @media screen and (min-width: 48rem) {
           .post-item .post-item-inner h2, .post-item .post-item-inner h3 {
-            padding-top: calc(2.365rem + 1.505 * ((100vw - 76.8rem) / 43.2)); } }
+            padding-top: calc(2.365rem + 2.279 * ((100vw - 76.8rem) / 43.2)); } }
         @media screen and (min-width: 75rem) {
           .post-item .post-item-inner h2, .post-item .post-item-inner h3 {
-            padding-top: 3.87rem; } }
+            padding-top: 4.644rem; } }
       .post-item .post-item-inner h2, .post-item .post-item-inner h3 {
         padding-bottom: 2.365rem; }
         @media screen and (min-width: 48rem) {
           .post-item .post-item-inner h2, .post-item .post-item-inner h3 {
-            padding-bottom: calc(2.365rem + 1.505 * ((100vw - 76.8rem) / 43.2)); } }
+            padding-bottom: calc(2.365rem + 2.279 * ((100vw - 76.8rem) / 43.2)); } }
         @media screen and (min-width: 75rem) {
           .post-item .post-item-inner h2, .post-item .post-item-inner h3 {
-            padding-bottom: 3.87rem; } }
-      @media only screen and (min-width: 48rem) {
+            padding-bottom: 4.644rem; } }
+      @media only screen and (min-width: 75rem) {
         .post-item .post-item-inner h2, .post-item .post-item-inner h3 {
           -ms-word-break: normal;
           word-break: normal;
@@ -2193,17 +2229,33 @@ a {
         margin-left: 0; }
   @media only screen and (min-width: 64rem) {
     .post-item {
-      height: 20vw; } }
+      height: 65vw; } }
   @media only screen and (min-width: 64rem) and (min-width: 64rem) {
     .post-item {
-      height: calc(55vw + -35 * ((100vw - 102.4rem) / 57.6)); } }
-  @media only screen and (min-width: 64rem) and (min-width: 100rem) {
+      height: calc(65vw + -45 * ((100vw - 102.4rem) / 57.76)); } }
+  @media only screen and (min-width: 64rem) and (min-width: 100.1rem) {
     .post-item {
-      height: 55vw; } }
+      height: 20vw; } }
 
-  @media only screen and (min-width: 100rem) {
+  @media only screen and (min-width: 100.1rem) {
     .post-item {
-      height: 38vw; } }
+      height: 40vw; } }
+  @media only screen and (min-width: 100.1rem) and (min-width: 100.1rem) {
+    .post-item {
+      height: calc(40vw + -8 * ((100vw - 160.16rem) / 31.84)); } }
+  @media only screen and (min-width: 100.1rem) and (min-width: 120rem) {
+    .post-item {
+      height: 32vw; } }
+
+  @media only screen and (min-width: 120rem) {
+    .post-item {
+      height: 34vw; } }
+  @media only screen and (min-width: 120rem) and (min-width: 120rem) {
+    .post-item {
+      height: calc(34vw + -6 * ((100vw - 192rem) / 64)); } }
+  @media only screen and (min-width: 120rem) and (min-width: 160rem) {
+    .post-item {
+      height: 28vw; } }
 
 .single-blog .post-item > img,
 .overview-blog .post-item > img {
@@ -2256,7 +2308,7 @@ a {
   .overview-blog .post-item .author .author-wrapper {
     font-family: "brandon-grotesque", Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1.6rem;
-    font-weight: 300; }
+    font-weight: 400; }
     .single-blog .post-item .author .author-wrapper img,
     .overview-blog .post-item .author .author-wrapper img {
       width: 5.4rem;
@@ -2373,13 +2425,13 @@ a {
 /* scss/molecules/_quotes.scss */
 blockquote {
   font-family: "brandon-grotesque", Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   font-size: 5.5rem;
   line-height: 0.8;
   margin: 6rem auto; }
   blockquote .author-wrapper {
     font-size: 1.6rem;
-    font-weight: 300;
+    font-weight: 400;
     margin-top: 3rem; }
     blockquote .author-wrapper img {
       border-radius: 50%; }
@@ -2421,10 +2473,10 @@ blockquote > div.row {
   margin: 0 auto 8rem; }
   .author-blog .author-wrapper {
     font-family: "brandon-grotesque", Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 200;
+    font-weight: 300;
     font-size: 2.1rem;
     line-height: 0.8;
-    font-weight: 300;
+    font-weight: 400;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     width: 100%; }
@@ -2652,7 +2704,7 @@ aside #mc_embed_signup {
 .front-page .two .bg-img {
   z-index: -3;
   right: -5rem;
-  top: 2rem; }
+  top: 8rem; }
 @media only screen and (min-width: 48rem) {
   .front-page .two .number {
     right: -6rem; } }
@@ -2664,10 +2716,10 @@ aside #mc_embed_signup {
       right: 0rem; } }
 @media only screen and (min-width: 48rem) {
   .front-page .two .number img {
-    width: 30rem; } }
+    width: 26rem; } }
   @media only screen and (min-width: 48rem) and (min-width: 48rem) {
     .front-page .two .number img {
-      width: calc(30rem + 17 * ((100vw - 76.8rem) / 83.36)); } }
+      width: calc(26rem + 21 * ((100vw - 76.8rem) / 83.36)); } }
   @media only screen and (min-width: 48rem) and (min-width: 100.1rem) {
     .front-page .two .number img {
       width: 47rem; } }
@@ -2675,12 +2727,29 @@ aside #mc_embed_signup {
   .front-page .two .desc {
     margin-left: -33.33333333%; }
     .front-page .two .desc p {
-      background: transparent; } }
+      background: transparent; }
+  .front-page .two .bg-img {
+    right: auto; }
+    .front-page .two .bg-img {
+      top: 6rem; } }
+    @media only screen and (min-width: 48rem) and (min-width: 48rem) {
+      .front-page .two .bg-img {
+        top: calc(6rem + 3 * ((100vw - 76.8rem) / 25.6)); } }
+    @media only screen and (min-width: 48rem) and (min-width: 64rem) {
+      .front-page .two .bg-img {
+        top: 9rem; } }
+
 @media only screen and (min-width: 64rem) {
   .front-page .two .number {
     top: 16rem; }
   .front-page .two .bg-img {
-    right: auto; } }
+    top: 16rem; } }
+  @media only screen and (min-width: 64rem) and (min-width: 64rem) {
+    .front-page .two .bg-img {
+      top: calc(16rem + -14 * ((100vw - 102.4rem) / 57.76)); } }
+  @media only screen and (min-width: 64rem) and (min-width: 100.1rem) {
+    .front-page .two .bg-img {
+      top: 2rem; } }
 
 /* scss/organisms/_front-three.scss */
 .front-page .three {
@@ -2733,10 +2802,10 @@ aside #mc_embed_signup {
       top: 5rem; } }
   @media only screen and (min-width: 100.1rem) and (min-width: 100.1rem) {
     .front-page .three .bg-img {
-      top: calc(5rem + -15 * ((100vw - 160.16rem) / 95.84)); } }
+      top: calc(5rem + -25 * ((100vw - 160.16rem) / 95.84)); } }
   @media only screen and (min-width: 100.1rem) and (min-width: 160rem) {
     .front-page .three .bg-img {
-      top: -10rem; } }
+      top: -20rem; } }
   @media only screen and (min-width: 100.1rem) {
     .front-page .three .desc-bg {
       width: 43%; } }
@@ -2796,10 +2865,10 @@ aside #mc_embed_signup {
     .front-page .five .bg-img {
       top: auto; }
     .front-page .five .number {
-      left: -1.5rem; } }
+      left: -7rem; } }
   @media only screen and (min-width: 48rem) and (min-width: 48rem) {
     .front-page .five .number {
-      left: calc(-1.5rem + 9.5 * ((100vw - 76.8rem) / 83.36)); } }
+      left: calc(-7rem + 15 * ((100vw - 76.8rem) / 83.36)); } }
   @media only screen and (min-width: 48rem) and (min-width: 100.1rem) {
     .front-page .five .number {
       left: 8rem; } }
@@ -2820,8 +2889,26 @@ aside #mc_embed_signup {
 .front-page .zero {
   padding-top: 0;
   /*
-   *  Breakpoint: sm
+   *  Breakpoint: md
    */ }
+  .front-page .zero div {
+    overflow: visible; }
+  .front-page .zero .proposition {
+    font-family: "brandon-grotesque", Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    line-height: 0.8;
+    color: #fa5f69;
+    padding-left: 3rem;
+    padding-bottom: 8rem;
+    padding-top: 4rem; }
+    .front-page .zero .proposition {
+      font-size: 4rem; }
+      @media screen and (min-width: 20rem) {
+        .front-page .zero .proposition {
+          font-size: calc(4rem + 1.5 * ((100vw - 32rem) / 160)); } }
+      @media screen and (min-width: 120rem) {
+        .front-page .zero .proposition {
+          font-size: 5.5rem; } }
   .front-page .zero h1 {
     background: -webkit-linear-gradient(45deg, #0046b4, #fa5f69);
     background: -moz-linear-gradient(45deg, #0046b4, #fa5f69);
@@ -2846,26 +2933,45 @@ aside #mc_embed_signup {
     top: 0;
     z-index: -1; }
   .front-page .zero .nr {
-    padding-top: 8rem; }
-    .front-page .zero .nr img {
-      max-width: 50%; }
+    padding-top: 4rem; }
+    @media screen and (min-width: 48rem) {
+      .front-page .zero .nr {
+        padding-top: calc(4rem + 4 * ((100vw - 76.8rem) / 43.2)); } }
+    @media screen and (min-width: 75rem) {
+      .front-page .zero .nr {
+        padding-top: 8rem; } }
+  .front-page .zero .nr {
+    padding-bottom: 4rem; }
+    @media screen and (min-width: 48rem) {
+      .front-page .zero .nr {
+        padding-bottom: calc(4rem + 4 * ((100vw - 76.8rem) / 43.2)); } }
+    @media screen and (min-width: 75rem) {
+      .front-page .zero .nr {
+        padding-bottom: 8rem; } }
+  .front-page .zero .nr img {
+    max-width: 50%; }
   @media only screen and (min-width: 64rem) {
-    .front-page .zero .nr {
-      padding-top: 0; }
-      .front-page .zero .nr img {
-        max-width: 100%; } }
+    .front-page .zero .nr img {
+      max-width: 100%; }
+    .front-page .zero .proposition {
+      padding-bottom: 0; } }
 
 /* scss/organisms/_side-tags.scss */
-.front-page main aside, .overview-work main aside {
+.front-page aside {
   position: fixed;
+  height: 100%; }
+
+.overview-work aside {
+  position: absolute;
+  height: 80vh; }
+
+.front-page main aside, .overview-work main aside {
   top: 0;
   right: 0;
   display: none;
   padding-top: 4rem;
   margin: 0;
-  font-style: italic;
-  height: 100%;
-  mix-blend-mode: difference; }
+  font-style: italic; }
   @media only screen and (min-width: 75rem) {
     .front-page main aside, .overview-work main aside {
       display: block; } }
@@ -3029,10 +3135,15 @@ figure {
   /*
    *	Breakpoint: xlg
    */ }
+  .front-page main .bg-img, .front-page main .bg-img-left {
+    position: absolute; }
   .front-page main .bg-img {
-    position: absolute;
-    z-index: -1;
+    z-index: -2;
     width: 100vw; }
+  .front-page main .bg-img-left {
+    z-index: -1;
+    width: 50vw;
+    left: 0; }
   .front-page main .zero, .front-page main .one, .front-page main .two, .front-page main .three, .front-page main .four, .front-page main .five {
     position: relative;
     align-content: center; }
@@ -3078,20 +3189,9 @@ figure {
       @media screen and (min-width: 75rem) {
         .front-page main h1, .front-page main h2 {
           padding-bottom: 7.74rem; } }
-  .front-page main .proposition {
-    font-size: 2.4rem;
-    padding-left: 3rem; }
-  .front-page main .desc {
-    margin-bottom: 4rem; }
-    @media screen and (min-width: 48rem) {
-      .front-page main .desc {
-        margin-bottom: calc(4rem + 3 * ((100vw - 76.8rem) / 43.2)); } }
-    @media screen and (min-width: 75rem) {
-      .front-page main .desc {
-        margin-bottom: 7rem; } }
   .front-page main .desc p {
     font-family: "brandon-grotesque", Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 200;
+    font-weight: 300;
     text-align: left;
     padding: 1.5rem;
     background: #ffffff; }
@@ -3103,6 +3203,14 @@ figure {
       @media screen and (min-width: 75rem) {
         .front-page main .desc p {
           font-size: 3rem; } }
+    .front-page main .desc p {
+      margin-bottom: 1rem; }
+      @media screen and (min-width: 48rem) {
+        .front-page main .desc p {
+          margin-bottom: calc(1rem + 2 * ((100vw - 76.8rem) / 43.2)); } }
+      @media screen and (min-width: 75rem) {
+        .front-page main .desc p {
+          margin-bottom: 3rem; } }
   .front-page main .number {
     position: absolute;
     top: 7rem; }

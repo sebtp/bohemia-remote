@@ -7,7 +7,7 @@ $thispost = get_the_ID();
 $thispostlink = get_permalink( $thispost );
 ?>
 <!-- 	The hero image. -->
-		<div class="hero container-full clip-svg-hero" style="background-image: url(<?php echo the_post_thumbnail_url( 'full' ); ?>)">
+		<div class="hero container-full" style="background-image: url(<?php echo the_post_thumbnail_url( 'full' ); ?>)">
 			<div class="row middle-xs">
 				<div class="col-xs col-sm-6 col-md-5 col-md-offset-1 col-lg-4">
 					<h1><?php the_title(); ?></h1>
@@ -15,14 +15,18 @@ $thispostlink = get_permalink( $thispost );
 				</div>
 			</div>
 		</div>
+		
 
 <!-- 	The main content -->
 		<main class="container-full">
+			<div class="row">
+				<div class="svg-overview"></div>
+			</div>
 			<?php
 					$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 					$work_args = array(
 						'post_type' => 'work',
-						'posts_per_page' => 4,
+						'posts_per_page' => 8,
 						'paged' => $paged
 					);
 					$work_query = new WP_Query( $work_args );

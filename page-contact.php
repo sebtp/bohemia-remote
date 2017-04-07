@@ -3,17 +3,22 @@
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 <!-- 	The hero image. echo the url at PHPHERE-->
-		<div class="hero clip-svg-hero" style="
+		<div class="hero" style="
 			background-image: url('<?php echo the_post_thumbnail_url( 'full' ); ?>');
 			background-image: url('<?php echo the_post_thumbnail_url( 'full' ); ?>'), -webkit-linear-gradient(45deg,#0046b4,#46beaf);
 			background-image: url('<?php echo the_post_thumbnail_url( 'full' ); ?>'), -moz-linear-gradient(45deg,#0046b4,#46beaf);
 			background-image: url('<?php echo the_post_thumbnail_url( 'full' ); ?>'), -o-linear-gradient(45deg,#0046b4,#46beaf);
 			background-image: url('<?php echo the_post_thumbnail_url( 'full' ); ?>'), -ms-linear-gradient(45deg,#0046b4,#46beaf);
 			background-image: url('<?php echo the_post_thumbnail_url( 'full' ); ?>'), linear-gradient(45deg,#0046b4,#46beaf);
-			"></div>
+			">
+			
+		</div>
   		
 <!-- 	The main content -->
 		<main class="container-fluid relative">
+			<div class="row">
+				<div class="svg-overview"></div>
+			</div>
 			<div class="row">
 				<article class="col-xs-12"> 
 					

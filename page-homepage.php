@@ -9,13 +9,24 @@
 				<div class="col-xs col-lg-10">
 				
 				<!-- 5 Reasons to work with Bohemia -->
-					<div class="zero row middle-xs">
-						<img class="bg-img" src="<?php bloginfo('template_directory');?>/img/hero_clouds.jpg" alt="">
-						<div class="nr col-xs-12 center-xs col-md-5">
-							<img src="<?php bloginfo('template_directory');?>/img/num-all.png" alt="">
+					<div class="zero row middle-xs center-xs">
+						<div class="row"> 
+							<img class="bg-img" src="<?php bloginfo('template_directory');?>/img/hero_clouds.jpg" alt="">
+						</div>						
+						
+						<div class="col-xs-12">
+							<div class="row center-xs"> 
+								<p class="proposition col-xs-12 col-sm-8 col-md-7 col-md-offset-4 start-md"> 
+									<?php the_field('proposition'); ?>
+								</p> 
+								<div class="nr col-xs-12 col-md-4">
+									<img src="<?php bloginfo('template_directory');?>/img/num-all.png" alt="">
+								</div>
+								<h1 class="col-xs-12 center-xs col-md-7 col-md-offset-0 start-md">
+									<?php the_field('big_title'); ?>
+								</h1>
+							</div>
 						</div>
-						<h1 class="col-xs-12 center-xs col-md-7 col-md-offset-0 start-md"><?php the_field('big_title'); ?></h1>
-						<p class="proposition col-xs-12 center-xs col-md-7 col-md-offset-5 start-md"><?php the_field('proposition'); ?></p>
 					</div>
 					
 				<!-- 1 -->
@@ -25,7 +36,7 @@
 							<img class="outer" src="<?php bloginfo('template_directory');?>/img/num-1.png" alt="">
 							<img class="inner" src="<?php bloginfo('template_directory');?>/img/num-1-inner.png" alt="">
 						</div>
-						<div class="col-xs-12 col-sm-offset-2 col-lg-10 col-lg-offset-2">
+						<div class="col-xs-12 col-sm-10 col-sm-offset-2 col-lg-10 col-lg-offset-2">
 							<div class="row">
 								<div class="col-xs col-lg-10">
 									<h2><?php the_field('reason_1_title'); ?></h2>
@@ -33,22 +44,24 @@
 							</div>
 							<div class="row center-sm">
 								<div class="desc col-xs col-sm-7 col-lg-7 col-xlg-6">
-									<p><?php the_field('reason_1_text'); ?></p>
+									<div class="row">
+										<p><?php the_field('reason_1_text'); ?></p>
+									</div>
+									<?php 
+										$ctavalue1 = get_field('reason_1_cta');
+										if ($ctavalue1 != ''){ 
+										?> 
+										<div class="row end-xs">
+											<a href="<?php the_field('reason_1_link'); ?>" class="green-btn">
+												<?php the_field('reason_1_cta'); ?>
+											</a>					
+										</div>
+									<?php } ?>
 								</div>
 							</div>
+							
 						</div>
-						<?php 
-							$ctavalue1 = get_field('reason_1_cta');
-							if ($ctavalue1 != ''){ 
-						?>
-						<div class="cta col-xs-12">
-							<div class="row end-xs">
-								<div class="col-xs">
-									<a href="<?php the_field('reason_1_link'); ?>" class="green-btn"><?php the_field('reason_1_cta'); ?></a>
-								</div>						
-							</div>
-						</div>
-						<?php } ?>
+						
 					</div>
 					
 				<!-- 2 -->
@@ -58,7 +71,7 @@
 							<img class="outer" src="<?php bloginfo('template_directory');?>/img/num-2.png" alt="">
 							<img class="inner" src="<?php bloginfo('template_directory');?>/img/num-2-inner.png" alt="">
 						</div>
-						<div class="col-xs-12 col-sm-offset-1 col-lg-10 col-lg-offset-2">
+						<div class="col-xs-12 col-sm-11 col-sm-offset-1 col-lg-10 col-lg-offset-2">
 							<div class="row">
 								<div class="col-xs col-lg-10">
 									<h2><?php the_field('reason_2_title'); ?></h2>
@@ -66,56 +79,52 @@
 							</div>
 							<div class="row center-sm">
 								<div class="desc col-xs col-sm-7 col-lg-7 col-xlg-6">
-									<p><?php the_field('reason_2_text'); ?></p>
+									<div class="row">
+										<p><?php the_field('reason_2_text'); ?></p>
+									</div>									
+									<?php 
+										$ctavalue2 = get_field('reason_2_cta');
+										if ($ctavalue2 != ''){ 
+										?>
+										<div class="row end-xs">
+											<a href="<?php the_field('reason_2_link'); ?>" class="red-btn"><?php the_field('reason_2_cta'); ?></a>
+										</div>						
+									<?php } ?>
 								</div>
 							</div>
 						</div>
-						<?php 
-							$ctavalue2 = get_field('reason_2_cta');
-							if ($ctavalue2 != ''){ 
-						?>
-						<div class="cta col-xs-12">
-							<div class="row end-xs">
-								<div class="col-xs">
-									<a href="<?php the_field('reason_2_link'); ?>" class="red-btn"><?php the_field('reason_2_cta'); ?></a>
-								</div>						
-							</div>
-						</div>
-						<?php } ?>
 					</div>
 					
 				<!-- 3 -->
 					<div class="three left row">
-						<img class="bg-img clip-svg-hero" src="<?php bloginfo('template_directory');?>/img/hero_clients.jpg" alt="">
+						<img class="bg-img" src="<?php bloginfo('template_directory');?>/img/hero_clients.jpg" alt="">
 						<div class="number">  <!-- col-xs-3 col-sm-4 -->
 							<img class="outer" src="<?php bloginfo('template_directory');?>/img/num-3.png" alt="">
 							<img class="inner" src="<?php bloginfo('template_directory');?>/img/num-3-inner.png" alt="">
 						</div>
-						<div class="col-xs-12 col-sm-offset-2 col-lg-10 col-lg-offset-2">
+						<div class="col-xs-12 col-sm-10 col-sm-offset-2"> 
 							<div class="row">
 								<div class="col-xs col-lg-10">
 									<h2><?php the_field('reason_3_title'); ?></h2>
 								</div>
 							</div>
 							<div class="row center-sm">
-								<div class="desc-bg col-xs col-sm-6 col-lg-7 col-xlg-6"></div>
-								<div class="desc col-xs col-sm-6 col-lg-7 col-xlg-6">
-									<p><?php the_field('reason_3_text'); ?></p>
+								<div class="desc-bg col-xs col-sm-7 col-lg-7 col-xlg-6"></div>
+								<div class="desc col-xs col-sm-7 col-lg-7 col-xlg-6">
+									<div class="row">
+										<p><?php the_field('reason_3_text'); ?></p>
+									</div>
+									<?php 
+										$ctavalue3 = get_field('reason_3_cta');
+										if ($ctavalue3 != ''){ 
+										?>
+										<div class="row end-xs">
+											<a href="<?php the_field('reason_3_link'); ?>" class="green-btn"><?php the_field('reason_3_cta'); ?></a>
+										</div>						
+									<?php } ?>
 								</div>
 							</div>
 						</div>
-						<?php 
-							$ctavalue3 = get_field('reason_3_cta');
-							if ($ctavalue3 != ''){ 
-						?>
-						<div class="cta col-xs-12">
-							<div class="row end-xs">
-								<div class="col-xs">
-									<a href="<?php the_field('reason_3_link'); ?>" class="green-btn"><?php the_field('reason_3_cta'); ?></a>
-								</div>						
-							</div>
-						</div>
-						<?php } ?>
 					</div>
 					
 				<!-- 4 -->
@@ -125,67 +134,66 @@
 							<img class="outer" src="<?php bloginfo('template_directory');?>/img/num-4.png" alt="">
 							<img class="inner" src="<?php bloginfo('template_directory');?>/img/num-4-inner.png" alt="">
 						</div>
-						<div class="col-xs-12 col-sm-offset-1 col-lg-10 col-lg-offset-2">
+						<div class="col-xs-12 col-sm-11 col-sm-offset-1 col-lg-10 col-lg-offset-2">
 							<div class="row">
 								<div class="col-xs col-lg-10">
 									<h2><?php the_field('reason_4_title'); ?></h2>
 								</div>
 							</div>
 							<div class="row center-sm">
-								<div class="desc col-xs col-sm-6 col-lg-7 col-xlg-6">
-									<p><?php the_field('reason_4_text'); ?></p>
+								<div class="desc col-xs col-sm-7 col-lg-7 col-xlg-6">
+									<div class="row">
+										<p><?php the_field('reason_4_text'); ?></p>
+									</div>
+									<?php 
+									$ctavalue4 = get_field('reason_4_cta');
+									if ($ctavalue4 != ''){ 
+									?>
+										<div class="row end-xs">
+											<a href="<?php the_field('reason_4_link'); ?>" class="red-btn"><?php the_field('reason_4_cta'); ?></a>
+										</div>
+									<?php } ?>
 								</div>
 							</div>
+							
 						</div>
-						<?php 
-							$ctavalue4 = get_field('reason_4_cta');
-							if ($ctavalue4 != ''){ 
-						?>
-						<div class="cta col-xs-12">
-							<div class="row end-xs">
-								<div class="col-xs">
-									<a href="<?php the_field('reason_4_link'); ?>" class="red-btn"><?php the_field('reason_4_cta'); ?></a>
-								</div>						
-							</div>
-						</div>
-						<?php } ?>
+						
 					</div>
 					
 				<!-- 5 -->
 					<div class="five left row">
+						<img class="bg-img-left" src="<?php bloginfo('template_directory');?>/img/hero_blog-2.png" alt="">
 						<img class="bg-img" src="<?php bloginfo('template_directory');?>/img/hero_blog.jpg" alt="">
 						<div class="number">  <!-- col-xs-3 col-sm-4 -->
 							<img class="outer" src="<?php bloginfo('template_directory');?>/img/num-5.png" alt="">
 							<img class="inner" src="<?php bloginfo('template_directory');?>/img/num-5-inner.png" alt=""> 
 						</div>
-						<div class="col-xs-12 col-sm-offset-2 col-lg-10 col-lg-offset-2">
+						<div class="col-xs-12 col-sm-10 col-sm-offset-2 col-lg-10 col-lg-offset-2">
 							<div class="row">
 								<div class="col-xs col-lg-10">
 									<h2><?php the_field('reason_5_title'); ?></h2>
 								</div>
 							</div>
 							<div class="row center-sm">
-								<div class="desc col-xs col-sm-6 col-lg-7 col-xlg-6">
-									<p><?php the_field('reason_5_text'); ?></p>
+								<div class="desc col-xs col-sm-7 col-lg-7 col-xlg-6">
+									<div class="row">
+										<p><?php the_field('reason_5_text'); ?></p>
+									</div>
+									<?php 
+									$ctavalue5 = get_field('reason_5_cta');
+									if ($ctavalue5 != ''){ 
+									?>
+										<div class="row end-xs">
+											<a href="<?php the_field('reason_5_link'); ?>" class="green-btn"><?php the_field('reason_5_cta'); ?></a>
+										</div>
+									<?php } ?>
 								</div>
 							</div>
 						</div>
-						<?php 
-							$ctavalue5 = get_field('reason_5_cta');
-							if ($ctavalue5 != ''){ 
-						?>
-						<div class="cta col-xs-12">
-							<div class="row end-xs">
-								<div class="col-xs">
-									<a href="<?php the_field('reason_5_link'); ?>" class="green-btn"><?php the_field('reason_5_cta'); ?></a>
-								</div>						
-							</div>
-						</div>
-						<?php } ?>
 					</div>
 				</div>
 			</div>
-		
+			
 			<aside class="col-md-2">
 				<div class="fixed-wrapper">
 					<button class="up">
@@ -224,11 +232,22 @@
 					</button>
 				</div>
 			</aside>
-
+		</main>
+				
+		<!-- 	Contact form -->
+		<section class="contact-form container-full">
+			<div class="row center-xs">
+				<h2 class="col-xs"><?php the_field('formulier_titel'); ?></h2>
+			</div>
+			<div class="row center-xs">				
+				<div class="col-xs-12 col-sm-7 col-md-5 col-lg-4 col-xlg-3">
+					<?php the_field('contactformulier'); ?>
+				</div>
+			</div>
 			<div class="tree">
 				<img src="<?php bloginfo('template_directory');?>/img/tree.jpg" alt="">
 			</div>
-		</main>
+		</section>
 
 <?php endwhile; endif; ?>
 <?php get_footer(); ?>

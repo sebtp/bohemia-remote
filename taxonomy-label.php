@@ -3,15 +3,26 @@
 <!-- 	The hero image -->
 		<div class="hero container-full" style="background-image: url(<?php bloginfo('template_directory');?>/img/hero_work.jpg)">
 			<div class="row middle-xs">
-				<div class="col-xs col-sm-6 col-md-5 col-md-offset-1 col-lg-4">
-					<h1><?php single_term_title(); ?></h1>
-					<div class="white-bg"><?php echo term_description(); ?></div>
+				<div class="col-xs col-sm-11 col-md-9 col-md-offset-1">
+					<div class="row">
+						<h1 class="col-xs">
+							<?php single_term_title(); ?>
+						</h1>
+					</div>
+					<div class="row">
+						<div class="white-bg col-xs col-sm-7 col-lg-6 col-xlg-5">
+							<?php echo term_description(); ?>
+						</div>
+					</div>											
 				</div>
-			</div>
+			</div>	
 		</div>
 
 <!-- 	The main content -->
 		<main class="container-full">
+			<div class="row">
+				<div class="svg-overview"></div>
+			</div>
 			<div class="row">
 				<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 				<?php $figm = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full'); ?>

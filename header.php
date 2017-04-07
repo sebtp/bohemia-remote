@@ -65,16 +65,7 @@
 		else : echo '<body>';
 		endif;
 	?>
-		<!-- Clipping SVG for the hero image -->
-		<svg class="clip-svg">
-		  <defs>
-			<clippath id="clip-polygon-hero" clipPathUnits="objectBoundingBox">
-			  <polygon points="0 1, 0 0, 1 0, 1 0.8" />
-			  <!-- When changing these, also change the _post-item.scss -->
-			</clippath>
-		  </defs>
-		</svg> 
- 		  		 		 		
+		  		 		 		
  		<!-- Clipping SVG for the Footer -->
 		<svg class="clip-svg">
 		  <defs>

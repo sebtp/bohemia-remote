@@ -2,7 +2,13 @@
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	
 		<!-- 	The hero image. echo the url at PHPHERE-->
-		<div class="hero clip-svg-hero" style="background-image: url('<?php echo the_post_thumbnail_url( 'full' ); ?>');"></div>
+		<div class="hero" style="background-image: url('<?php echo the_post_thumbnail_url( 'full' ); ?>');">
+			<div class="svg-container">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 4" class="svg-single">
+					<polygon style="fill:#fff" points="36 0 0 4 36 4 36 0"/>
+				</svg>
+			</div>
+ 		</div>
   		
 <!-- 	The main content -->
 		<main class="container-fluid relative">
@@ -96,9 +102,9 @@
 				<a href="<?php echo get_permalink( $prev_post->ID ); ?>" class="col-xs-12 col-md-6 post-item">
 					<img src="<?php echo $previmg[0]; ?>" alt="<?php echo $prev_post->post_title; ?>">	
 					<div class="row post-item-inner">
-						<div class="col-xs-11">
+						<div class="col-xs col-sm-11">
 							<h3 class="col-xs"><?php echo $prev_post->post_title; ?></h3>
-							<div class="tags col-xs-9">
+							<div class="tags col-xs">
 								<?php
 									$terms = wp_get_object_terms( $prev_post->ID, 'label' );
 									echo '<ul>';
@@ -108,7 +114,7 @@
 									echo '</ul>';
 								?>
 							</div>
-							<div class="client col-xs-9">
+							<div class="client col-xs">
 							<?php 
 								foreach( $prevclient as $post ):
 									setup_postdata($post);
@@ -130,9 +136,9 @@
 				<a href="<?php the_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
 					<img src="<?php echo $previmg[0]; ?>" alt="<?php the_title(); ?>">	
 					<div class="row post-item-inner">
-						<div class="col-xs-11">
+						<div class="col-xs col-sm-11">
 							<h3 class="col-xs"><?php the_title(); ?></h3>
-							<div class="tags col-xs-9">
+							<div class="tags col-xs">
 								<?php
 									$terms = wp_get_object_terms( $post->ID, 'label' );
 									echo '<ul>';
@@ -142,7 +148,7 @@
 									echo '</ul>';
 								?>
 							</div>
-							<div class="client col-xs-9">
+							<div class="client col-xs">
 							<?php 
 								foreach( $prevclient as $post ):
 									setup_postdata($post);
@@ -167,9 +173,9 @@
 				<a href="<?php echo get_permalink( $next_post->ID ); ?>" class="col-xs-12 col-md-6 post-item">
 					<img src="<?php echo $nextimg[0]; ?>" alt="<?php echo $next_post->post_title; ?>">	
 					<div class="row post-item-inner">
-						<div class="col-xs-11">
+						<div class="col-xs col-sm-11">
 							<h3 class="col-xs"><?php echo $next_post->post_title; ?></h3>
-							<div class="tags col-xs-9">
+							<div class="tags col-xs">
 								<?php
 									$terms = wp_get_object_terms( $next_post->ID, 'label' );
 									echo '<ul>';
@@ -179,7 +185,7 @@
 									echo '</ul>';
 								?>
 							</div>
-							<div class="client col-xs-9">
+							<div class="client col-xs">
 							<?php 
 								foreach( $nextclient as $post ):
 									setup_postdata($post);
@@ -201,9 +207,9 @@
 				<a href="<?php echo get_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
 					<img src="<?php echo $nextimg[0]; ?>" alt="<?php the_title(); ?>">	
 					<div class="row post-item-inner">
-						<div class="col-xs-11">
+						<div class="col-xs col-sm-11">
 							<h3 class="col-xs"><?php the_title(); ?></h3>
-							<div class="tags col-xs-9">
+							<div class="tags col-xs">
 								<?php
 									$terms = wp_get_object_terms( $post->ID, 'label' );
 									echo '<ul>';
@@ -213,7 +219,7 @@
 									echo '</ul>';
 								?>
 							</div>
-							<div class="client col-xs-9">
+							<div class="client col-xs">
 							<?php 
 								foreach( $nextclient as $post ):
 									setup_postdata($post);
