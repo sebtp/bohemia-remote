@@ -17,9 +17,6 @@
 <!-- 	The main content -->
 		<main class="container-fluid relative">
 			<div class="row">
-				<div class="svg-overview"></div>
-			</div>
-			<div class="row">
 				<article class="col-xs-12"> 
 					
 				<!-- Header -->
@@ -52,7 +49,7 @@
 <!-- 	Contact form -->
 		<section class="contact-form container-full">
 			<div class="row center-xs">
-				<h2 class="col-xs"><?php the_field('formulier_titel'); ?></h2>
+				<h3 class="col-xs-12"><?php the_field('formulier_titel'); ?></h3>
 			</div>
 			<div class="row center-xs">				
 				<div class="col-xs-12 col-sm-7 col-md-5 col-lg-4 col-xlg-3">

@@ -1,24 +1,86 @@
+// Get IE or Edge browser version
+var version = detectIE();
+
+if (version === false) {
+	//not IE/Edge
+} else if (version >= 12) {
+	// Edge
+	document.body.classList.add("edge");
+} else {
+	// IE
+	document.body.classList.add("ie");
+}
+
+/**
+ * detect IE
+ * returns version of IE or false, if browser is not Internet Explorer
+ */
+function detectIE() {
+	'use strict';
+  var ua = window.navigator.userAgent;
+  
+  var msie = ua.indexOf('MSIE ');
+  if (msie > 0) {
+    // IE 10 or older => return version number
+    return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+  }
+
+  var trident = ua.indexOf('Trident/');
+  if (trident > 0) {
+    // IE 11 => return version number
+    var rv = ua.indexOf('rv:');
+    return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+  }
+
+  var edge = ua.indexOf('Edge/');
+  if (edge > 0) {
+    // Edge (IE 12+) => return version number
+    return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+  }
+
+  // other browser
+  return false;
+}
+
+
+//Resize footer SVG
+window.onload = function initalSVG() {
+	'use strict';
+	var angle = window.innerWidth / 5120;
+  
+  //hero variables
+  var hbl = '0 1,',
+      htl = '0 ' + angle + ',',
+      htr = '1 0,',
+      hbr = '1 1';
+       
+  document.querySelector("#clip-polygon-footer > polygon").setAttribute("points", hbl + htl + htr + hbr);
+};
+
+window.onresize = function changeSVG() {
+	'use strict';
+	var angle = window.innerWidth / 5120;
+  
+  //hero variables
+ 	var hbl = '0 1,',
+      htl = '0 ' + angle + ',',
+      htr = '1 0,',
+      hbr = '1 1';
+       
+  document.querySelector("#clip-polygon-footer > polygon").setAttribute("points", hbl + htl + htr + hbr);
+};
+
+
 // Finding the parent of an iframe
 jQuery(document).ready(function($){ 
 	'use strict';
 	$("iframe").parent().addClass("iframe-parent");
 });
 
-// Detecting Safari, IE8 and Edge
-/*jQuery(document).ready(function($){ 
-	'use strict';
-	if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1){
-		$("body").addClass("isSafari");
-	}
-	// detect IE8 and above, and edge
-	if (document.documentMode || /Edge/.test(navigator.userAgent)) {
-		$("body").addClass("isSafari");
-	}
-});*/
-
 
 //Gallery masonry init
-jQuery(document).ready(function($){ 
+jQuery(document).ready(function($){
+	'use strict';
 	//Add the masonry class to all but first 3
 	$(".gallery>.gallery-item:not(:first-of-type)").addClass("small-img");
 	$(".gallery>.gallery-item:first-of-type").addClass("big-img");
@@ -42,8 +104,8 @@ jQuery(document).ready(function($){
 });
 
 //Hover on scroll - mobile
-function isElementInViewport (elem) {
-			
+/*function isElementInViewport(elem) {
+	'use strict';
 	if (elem.is(':visible')) {
 		if(elem.hasClass('scrolledIntoView')){
 			return false;
@@ -66,7 +128,7 @@ function isElementInViewport (elem) {
 	}
 	
 	return false;
-}
+}*/
 
 // Changing colors of header
 jQuery(document).ready(function($){ 

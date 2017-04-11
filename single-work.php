@@ -11,8 +11,8 @@
  		</div>
   		
 <!-- 	The main content -->
-		<main class="container-fluid relative">
-			<div class="clearfix row">
+		<main class="container-fluid">
+			<div class="row relative">
 				<article class="col-xs-12"> 
 					
 				<!-- Header -->
@@ -90,77 +90,9 @@
 <!-- 	Prev/Next -->
 		<section class="container-full work-bg">
 			<div class="row">
-				<?php
-				if( get_adjacent_post(false, '', true) ) { 
-				$prev_post = get_previous_post();
-				if (!empty( $prev_post )): ?>
-				<?php 
-				$prevpostid = $prev_post->ID;
-				$previmg = wp_get_attachment_image_src( get_post_thumbnail_id($prevpostid), 'full');
-				$prevclient = get_field('client_name', $prevpostid);
-				?>
-				<a href="<?php echo get_permalink( $prev_post->ID ); ?>" class="col-xs-12 col-md-6 post-item">
-					<img src="<?php echo $previmg[0]; ?>" alt="<?php echo $prev_post->post_title; ?>">	
-					<div class="row post-item-inner">
-						<div class="col-xs col-sm-11">
-							<h3 class="col-xs"><?php echo $prev_post->post_title; ?></h3>
-							<div class="tags col-xs">
-								<?php
-									$terms = wp_get_object_terms( $prev_post->ID, 'label' );
-									echo '<ul>';
-									foreach( $terms as $term ):
-										echo '<li>' . $term->name . '</li>';
-									endforeach;
-									echo '</ul>';
-								?>
-							</div>
-							<div class="client col-xs">
-							<?php 
-								foreach( $prevclient as $post ):
-									setup_postdata($post);
-									the_title();
-								endforeach;
-								wp_reset_postdata();
-							?>
-							</div>
-						</div>
-					</div>
-				</a>
-				<?php 
-					endif; 
-				} else {
-					$first = new WP_Query('post_type=work&posts_per_page=1&order=ASC'); $first->the_post();
-					$previmg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full');
-					$prevclient = get_field('client_name');
-				?>
-				<a href="<?php the_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
-					<img src="<?php echo $previmg[0]; ?>" alt="<?php the_title(); ?>">	
-					<div class="row post-item-inner">
-						<div class="col-xs col-sm-11">
-							<h3 class="col-xs"><?php the_title(); ?></h3>
-							<div class="tags col-xs">
-								<?php
-									$terms = wp_get_object_terms( $post->ID, 'label' );
-									echo '<ul>';
-									foreach( $terms as $term ):
-										echo '<li>' . $term->name . '</li>';
-									endforeach;
-									echo '</ul>';
-								?>
-							</div>
-							<div class="client col-xs">
-							<?php 
-								foreach( $prevclient as $post ):
-									setup_postdata($post);
-									the_title();
-								endforeach;
-								wp_reset_postdata();
-							?>
-							</div>
-						</div>
-					</div>
-				</a>
-				<?php wp_reset_query(); } ?>				
+				<div class="svg-overview"></div>
+			</div>
+			<div class="row">
 				<?php
 				if( get_adjacent_post(false, '', false) ) {
 				$next_post = get_next_post();
@@ -173,27 +105,37 @@
 				<a href="<?php echo get_permalink( $next_post->ID ); ?>" class="col-xs-12 col-md-6 post-item">
 					<img src="<?php echo $nextimg[0]; ?>" alt="<?php echo $next_post->post_title; ?>">	
 					<div class="row post-item-inner">
-						<div class="col-xs col-sm-11">
-							<h3 class="col-xs"><?php echo $next_post->post_title; ?></h3>
-							<div class="tags col-xs">
-								<?php
-									$terms = wp_get_object_terms( $next_post->ID, 'label' );
-									echo '<ul>';
-									foreach( $terms as $term ):
-										echo '<li>' . $term->name . '</li>';
+						<div class="col-xs-12">
+						
+							<div class="row">
+								<h3 class="col-xs-12 col-xlg-11 col-xxlg-10 col-xxxlg-9"><?php echo $next_post->post_title; ?></h3>
+							</div>
+							
+							<div class="row">
+								<div class="tags col-xs-12 col-xxxlg-9">
+									<?php
+										$terms = wp_get_object_terms( $next_post->ID, 'label' );
+										echo '<ul>';
+										foreach( $terms as $term ):
+											echo '<li>' . $term->name . '</li>';
+										endforeach;
+										echo '</ul>';
+									?>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="client col-xs-12 col-xxxlg-9">
+								<?php 
+									foreach( $nextclient as $post ):
+										setup_postdata($post);
+										the_title();
 									endforeach;
-									echo '</ul>';
+									wp_reset_postdata();
 								?>
+								</div>
 							</div>
-							<div class="client col-xs">
-							<?php 
-								foreach( $nextclient as $post ):
-									setup_postdata($post);
-									the_title();
-								endforeach;
-								wp_reset_postdata();
-							?>
-							</div>
+
 						</div>
 					</div>
 				</a>
@@ -207,31 +149,132 @@
 				<a href="<?php echo get_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
 					<img src="<?php echo $nextimg[0]; ?>" alt="<?php the_title(); ?>">	
 					<div class="row post-item-inner">
-						<div class="col-xs col-sm-11">
-							<h3 class="col-xs"><?php the_title(); ?></h3>
-							<div class="tags col-xs">
-								<?php
-									$terms = wp_get_object_terms( $post->ID, 'label' );
-									echo '<ul>';
-									foreach( $terms as $term ):
-										echo '<li>' . $term->name . '</li>';
+						<div class="col-xs-12">
+							<div class="row">
+								<h3 class="col-xs-12 col-xlg-11 col-xxlg-10 col-xxxlg-9"><?php the_title(); ?></h3>
+							</div>
+							
+							<div class="row">
+								<div class="tags col-xs-12 col-xxxlg-9">
+									<?php
+										$terms = wp_get_object_terms( $post->ID, 'label' );
+										echo '<ul>';
+										foreach( $terms as $term ):
+											echo '<li>' . $term->name . '</li>';
+										endforeach;
+										echo '</ul>';
+									?>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="client col-xs-12 col-xxxlg-9">
+								<?php 
+									foreach( $nextclient as $post ):
+										setup_postdata($post);
+										the_title();
 									endforeach;
-									echo '</ul>';
+									wp_reset_postdata();
 								?>
+								</div>
 							</div>
-							<div class="client col-xs">
-							<?php 
-								foreach( $nextclient as $post ):
-									setup_postdata($post);
-									the_title();
-								endforeach;
-								wp_reset_postdata();
-							?>
-							</div>
+
 						</div>
 					</div>
 				</a>
 				<?php wp_reset_query(); } ?>
+				<?php
+				if( get_adjacent_post(false, '', true) ) { 
+				$prev_post = get_previous_post();
+				if (!empty( $prev_post )): ?>
+				<?php 
+				$prevpostid = $prev_post->ID;
+				$previmg = wp_get_attachment_image_src( get_post_thumbnail_id($prevpostid), 'full');
+				$prevclient = get_field('client_name', $prevpostid);
+				?>
+				<a href="<?php echo get_permalink( $prev_post->ID ); ?>" class="col-xs-12 col-md-6 post-item">
+					<img src="<?php echo $previmg[0]; ?>" alt="<?php echo $prev_post->post_title; ?>">	
+					<div class="row post-item-inner">
+						<div class="col-xs-12">
+						
+							<div class="row">
+								<h3 class="col-xs-12 col-xlg-11 col-xxlg-10 col-xxxlg-9"><?php echo $prev_post->post_title; ?></h3>
+							</div>
+							
+							<div class="row">
+								<div class="tags col-xs-12 col-xxxlg-9">
+									<?php
+										$terms = wp_get_object_terms( $prev_post->ID, 'label' );
+										echo '<ul>';
+										foreach( $terms as $term ):
+											echo '<li>' . $term->name . '</li>';
+										endforeach;
+										echo '</ul>';
+									?>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="client col-xs-12 col-xxxlg-9">
+								<?php 
+									foreach( $prevclient as $post ):
+										setup_postdata($post);
+										the_title();
+									endforeach;
+									wp_reset_postdata();
+								?>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</a>
+				<?php 
+					endif; 
+				} else {
+					$first = new WP_Query('post_type=work&posts_per_page=1&order=ASC'); $first->the_post();
+					$previmg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full');
+					$prevclient = get_field('client_name');
+				?>
+				<a href="<?php the_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
+					<img src="<?php echo $previmg[0]; ?>" alt="<?php the_title(); ?>">	
+					<div class="row post-item-inner">
+						<div class="col-xs-12">
+						
+							<div class="row">
+								<h3 class="col-xs-12 col-xlg-11 col-xxlg-10 col-xxxlg-9"><?php the_title(); ?></h3>
+							</div>
+							
+							<div class="row">
+								<div class="tags col-xs-12 col-xxxlg-9">
+									<?php
+										$terms = wp_get_object_terms( $post->ID, 'label' );
+										echo '<ul>';
+										foreach( $terms as $term ):
+											echo '<li>' . $term->name . '</li>';
+										endforeach;
+										echo '</ul>';
+									?>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="client col-xs-12 col-xxxlg-9">
+								<?php 
+									foreach( $prevclient as $post ):
+										setup_postdata($post);
+										the_title();
+									endforeach;
+									wp_reset_postdata();
+								?>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</a>
+				<?php wp_reset_query(); } ?>				
+				
 			</div>
 			<div class="tree">
 				<img src="<?php bloginfo('template_directory');?>/img/tree.jpg" alt="">

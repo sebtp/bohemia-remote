@@ -3,7 +3,7 @@
 			<div class="row">
 				<div class="container-fluid">
 					<div class="row center-xs end-md">
-						<div class="col-xs">
+						<div class="col-xs-12">
 							<div><strong>Bohemia Amsterdam</strong></div>
 							<div>
 								Generaal Vetterstraat 72-a<br>
@@ -33,10 +33,10 @@
 		</footer>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
-		<script src="https://unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
 		<script src="<?php bloginfo('template_directory');?>/js/main.js"></script>
-		
+		<script src="https://unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+		<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
 		<?php wp_footer(); ?>
 	</body>
 </html>

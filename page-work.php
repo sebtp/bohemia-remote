@@ -40,9 +40,14 @@ $thispostlink = get_permalink( $thispost );
 				<a href="<?php the_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
 					<img src="<?php echo $figm[0]; ?>" alt="<?php the_title(); ?>">	
 					<div class="row post-item-inner">
-						<div class="col-sm-11">
-							<h2 class="col-xs" ><?php the_title(); ?></h2>
-							<div class="tags col-xs col-xlg-9">
+						<div class="col-xs-12">
+						
+							<div class="row">
+								<h2 class="col-xs-12 col-xlg-11 col-xxlg-10 col-xxxlg-9" ><?php the_title(); ?></h2>
+							</div>
+							
+							<div class="row">
+								<div class="tags col-xs-12 col-xxxlg-9">
 								<?php
 									$terms = wp_get_object_terms( $post->ID, 'label' );
 									echo '<ul>';
@@ -51,8 +56,11 @@ $thispostlink = get_permalink( $thispost );
 									endforeach;
 									echo '</ul>';
 								?>
+								</div>
 							</div>
-							<div class="client col-xs col-xlg-9">
+							
+							<div class="row">
+								<div class="client col-xs-12 col-xxxlg-9">
 								<?php 
 									$clients = get_field('client_name');
 									foreach( $clients as $post ):
@@ -61,7 +69,9 @@ $thispostlink = get_permalink( $thispost );
 									endforeach;
 									wp_reset_postdata();
 								?>
+								</div>
 							</div>
+											
 						</div>
 					</div>
 				</a>

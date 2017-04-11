@@ -17,6 +17,11 @@
 					<div class="white-bg col-xs col-sm-6 col-md-5 col-md-offset-1 col-lg-4"><?php echo $posts_page_txt; ?></div>
 				</div>
 			</div>
+			<div class="row">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 4" class="svg-single">
+					<polygon style="fill:#fff" points="36 0 0 4 36 4 36 0"/>
+				</svg>
+			</div>	
 		</div>
 
 <!-- 	The main content -->
@@ -28,10 +33,15 @@
 					<span></span>
 					<img src="<?php echo $figm[0]; ?>" alt="<?php the_title(); ?>">						
 					<div class="row post-item-inner">
-						<div class="col-sm-11">
-							<h2 class="col-xs"><?php the_field('big_title'); ?></h2>
-							<div class="tags col-xs col-xlg-9">
-								<?php
+						<div class="col-xs-12">
+						
+							<div class="row">
+								<h2 class="col-xs-12 col-xlg-11 col-xxlg-10 col-xxxlg-9"><?php the_field('big_title'); ?></h2>
+							</div>
+							
+							<div class="row">
+								<div class="tags col-xs-12 col-xxxlg-9">
+									<?php
 									   $posttags = get_the_tags();
 									   if ($posttags) {
 										  echo '<ul>'; 
@@ -41,35 +51,40 @@
 										  echo '</ul>';
 									   }
 									?>
+								</div>
 							</div>
-							<?php
-								$authorid = get_field('blog_author');
-							?>
-							<?php if( $authorid ): ?>
-							<?php foreach( $authorid as $authorid ): ?>
-							<?php $authorimg = wp_get_attachment_image_src( get_post_thumbnail_id( $authorid->ID), 'thumbnail'); ?>
-							<div class="author col-xs col-xlg-9">
-								<div class="author-wrapper row middle-xs">
-									<img src="<?php echo $authorimg[0]; ?>" alt="<?php echo get_the_title( $authorid->ID ); ?>">			
-									<div class="author-inner">
-										<div class="row"><?php echo get_the_title( $authorid->ID ); ?></div>
-										<div class="row">
-											<?php
-												if ( get_field( 'gast_author', $authorid->ID ) ):
-													if(strpos($thispostlink,'nl')>0)
-													{
-														echo 'Gast';
-													} else {
-														echo 'Guest';
-													}
-												endif;
-											?>
+							
+							<div class="row">
+								<?php
+									$authorid = get_field('blog_author');
+								?>
+								<?php if( $authorid ): ?>
+								<?php foreach( $authorid as $authorid ): ?>
+								<?php $authorimg = wp_get_attachment_image_src( get_post_thumbnail_id( $authorid->ID), 'thumbnail'); ?>
+								<div class="author col-xs-12 col-xxxlg-9">
+									<div class="author-wrapper row middle-xs">
+										<img src="<?php echo $authorimg[0]; ?>" alt="<?php echo get_the_title( $authorid->ID ); ?>">			
+										<div class="author-inner">
+											<div class="row"><?php echo get_the_title( $authorid->ID ); ?></div>
+											<div class="row">
+												<?php
+													if ( get_field( 'gast_author', $authorid->ID ) ):
+														if(strpos($thispostlink,'nl')>0)
+														{
+															echo 'Gast';
+														} else {
+															echo 'Guest';
+														}
+													endif;
+												?>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<?php endforeach; ?>
-							<?php endif; ?>
+								<?php endforeach; ?>
+								<?php endif; ?>
+							</div>					
+							
 						</div>
 					</div>
 				</a>

@@ -9,11 +9,8 @@
 				<div class="col-xs col-lg-10">
 				
 				<!-- 5 Reasons to work with Bohemia -->
-					<div class="zero row middle-xs center-xs">
-						<div class="row"> 
-							<img class="bg-img" src="<?php bloginfo('template_directory');?>/img/hero_clouds.jpg" alt="">
-						</div>						
-						
+					<div class="zero row middle-xs center-xs">					
+						<img class="bg-img" src="<?php bloginfo('template_directory');?>/img/hero_clouds.jpg" alt="">
 						<div class="col-xs-12">
 							<div class="row center-xs"> 
 								<p class="proposition col-xs-12 col-sm-8 col-md-7 col-md-offset-4 start-md"> 
@@ -237,7 +234,7 @@
 		<!-- 	Contact form -->
 		<section class="contact-form container-full">
 			<div class="row center-xs">
-				<h2 class="col-xs"><?php the_field('formulier_titel'); ?></h2>
+				<h3 class="col-xs-12"><?php the_field('formulier_titel'); ?></h3> 
 			</div>
 			<div class="row center-xs">				
 				<div class="col-xs-12 col-sm-7 col-md-5 col-lg-4 col-xlg-3">

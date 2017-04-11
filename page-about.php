@@ -14,6 +14,9 @@
 
 <!-- 	The main content -->
 		<main class="container-full work-bg">
+			<div class="row">
+				<div class="svg-overview"></div>
+			</div>
 			<?php
 					$tm_args = array(
 						'post_type' => 'team_members',
@@ -32,14 +35,23 @@
 					<span></span>
 					<img src="<?php echo $figm[0]; ?>" alt="<?php the_title(); ?>">	
 					<div class="row post-item-inner">
-						<div class="col-xs col-sm-11">
-							<h3><?php the_title(); ?></h3>
-							<div class="quote">
-								<?php if( get_field('quote') ): ?>
-									&ldquo;<?php the_field('quote'); ?>&rdquo;
-								<?php endif; ?>
+						<div class="col-xs-12">
+						
+							<div class="row">
+								<h2 class="col-xs-12 col-xlg-11 col-xxlg-10 col-xxxlg-9"><?php the_title(); ?></h2>
 							</div>
-							<div class="position"><?php the_field('job_title'); ?></div>
+							
+							<div class="row">
+								<div class="quote col-xs-12 col-lg-8">
+									<?php if( get_field('quote') ): ?>
+										&ldquo;<?php the_field('quote'); ?>&rdquo;
+									<?php endif; ?>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="position col-xs-12"><?php the_field('job_title'); ?></div>
+							</div>							
 						</div>
 					</div>
 				</a>
