@@ -4,28 +4,37 @@
 
 <!-- 	The main content -->
 		<main class="container-full">
-	
+			<div class="row">
+				<img class="bg-img" src="<?php bloginfo('template_directory');?>/img/hero_clouds.jpg" alt=""> 
+			</div>			
 			<div class="row middle-xs">
-				<div class="col-xs col-lg-10">
+				<div class="col-xs-12 col-lg-10">
 				
 				<!-- 5 Reasons to work with Bohemia -->
 					<div class="zero row middle-xs center-xs">					
-						<img class="bg-img" src="<?php bloginfo('template_directory');?>/img/hero_clouds.jpg" alt="">
+						
 						<div class="col-xs-12">
 							<div class="row center-xs"> 
-								<p class="proposition col-xs-12 col-sm-8 col-md-7 col-md-offset-4 start-md"> 
+								<p class="proposition col-xs-12 col-md-9"> 
 									<?php the_field('proposition'); ?>
-								</p> 
-								<div class="nr col-xs-12 col-md-4">
-									<img src="<?php bloginfo('template_directory');?>/img/num-all.png" alt="">
-								</div>
-								<h1 class="col-xs-12 center-xs col-md-7 col-md-offset-0 start-md">
+								</p>
+							</div>
+							<div class="row center-xs">
+								<!--<div class="nr col-xs-12 col-md-2">
+									<img src="<?php //bloginfo('template_directory');?>/img/num-all.png" alt="">
+								</div>-->
+								<h1 class="col-xs-12 center-xs col-md-7 start-md">
 									<?php the_field('big_title'); ?>
 								</h1>
 							</div>
+							<div class="row center-xs">
+								<img class="arrow" src="<?php bloginfo('template_directory');?>/img/ic-arrow-down.svg" alt="">
+							</div>							
 						</div>
 					</div>
-					
+				</div>
+				
+				<div class="col-xs-12">	
 				<!-- 1 -->
 					<div class="one left row">
 						<img class="bg-img" src="<?php bloginfo('template_directory');?>/img/hero_model.jpg" alt="">
@@ -190,6 +199,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 			
 			<aside class="col-md-2">
 				<div class="fixed-wrapper">

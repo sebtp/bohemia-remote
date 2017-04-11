@@ -13,7 +13,7 @@ if(strpos($thispostlink,'nl')>0) {
 }
 ?>
 <!-- 	The hero image. -->
-		<div class="hero container-full" style="background-image: url(<?php bloginfo('template_directory');?>/img/hero_clients-full.jpg)">
+		<div class="hero container-full" style="background-image: url(<?php bloginfo('template_directory');?>/img/hero_work.jpg)">
 			<div class="row middle-xs">
 				<div class="col-xs col-sm-11 col-md-9 col-md-offset-1">
 					<div class="row">

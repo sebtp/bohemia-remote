@@ -9,7 +9,13 @@
 			background-image: url('<?php bloginfo('template_directory');?>/img/404.jpg'), -o-linear-gradient(45deg,#0046b4,#46beaf);
 			background-image: url('<?php bloginfo('template_directory');?>/img/404.jpg'), -ms-linear-gradient(45deg,#0046b4,#46beaf);
 			background-image: url('<?php bloginfo('template_directory');?>/img/404.jpg'), linear-gradient(45deg,#0046b4,#46beaf);
-			"></div>
+			">
+			<div class="svg-container">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 4" class="svg-single">
+					<polygon style="fill:#fff" points="36 0 0 4 36 4 36 0"/>
+				</svg>
+			</div>
+			</div>
   		
 <!-- 	The main content -->
 		<main class="container-fluid relative">

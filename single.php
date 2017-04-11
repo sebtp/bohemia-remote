@@ -84,7 +84,9 @@
 							<div class="row">
 								<div class="col-lg-8">
 									<div class="row">
-										<?php the_field('author_bio', $authorid->ID ); ?>
+										<div class="col-xs-12">
+											<?php the_field('author_bio', $authorid->ID ); ?>
+										</div>										
 									</div>
 								</div>
 							</div>

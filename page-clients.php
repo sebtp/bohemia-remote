@@ -2,7 +2,6 @@
 <?php get_header(); ?>
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-<!-- 	The hero image. echo the url instead of: http://lorempixel.com/1920/1080-->
 		<div class="hero container-full" style="background-image: url(<?php echo the_post_thumbnail_url( 'full' ); ?>)">
 			<div class="row middle-xs">
 				<div class="col-xs col-sm-11 col-md-9 col-md-offset-1">
