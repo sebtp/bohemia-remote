@@ -1,4 +1,4 @@
-<aside class="col-xs-12 col-sm-4 col-md-3">
+<aside id="sidebar" class="col-xs-12 col-sm-4 col-md-3">
 	<div class="row">
 		<h4 class="col-xs-12">Newsletter</h4>
 		<?php

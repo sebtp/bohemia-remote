@@ -8,10 +8,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title><?php wp_title(' | ',TRUE,'right'); ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 		
-		<link href="<?php bloginfo('template_directory');?>/style.css" rel="stylesheet">
 		<link rel="stylesheet" href="<?php bloginfo('template_directory');?>/main.css">
 
 		<script>

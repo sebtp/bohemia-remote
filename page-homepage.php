@@ -34,7 +34,7 @@
 					</div>
 				</div>
 				
-				<div class="col-xs-12">	
+				<div class="col-xs-12 col-sm-10">	
 				<!-- 1 -->
 					<div class="one left row">
 						<img class="bg-img" src="<?php bloginfo('template_directory');?>/img/hero_model.jpg" alt="">
@@ -168,7 +168,7 @@
 					
 				<!-- 5 -->
 					<div class="five left row">
-						<img class="bg-img-left" src="<?php bloginfo('template_directory');?>/img/hero_blog-2.png" alt="">
+						<img class="bg-img-left" src="<?php bloginfo('template_directory');?>/img/hero_blog-2.jpg" alt="">
 						<img class="bg-img" src="<?php bloginfo('template_directory');?>/img/hero_blog.jpg" alt="">
 						<div class="number">  <!-- col-xs-3 col-sm-4 -->
 							<img class="outer" src="<?php bloginfo('template_directory');?>/img/num-5.png" alt="">

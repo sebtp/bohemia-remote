@@ -103,32 +103,6 @@ jQuery(document).ready(function($){
 	
 });
 
-//Hover on scroll - mobile
-/*function isElementInViewport(elem) {
-	'use strict';
-	if (elem.is(':visible')) {
-		if(elem.hasClass('scrolledIntoView')){
-			return false;
-		}
-            
-        var docViewTop = jQuery(window).scrollTop();
-        var docViewBottom = docViewTop + jQuery(window).height();
-        var elemTop = jQuery(elem).offset().top;
-        //var elemBottom = elemTop + $(elem).height();
-    
-        var distance =  Math.abs( elemTop - docViewTop  ), windowHeight = jQuery(window).height();
-        
-        if ( distance <= windowHeight / 3 ) { //
-            jQuery('.scrolledIntoView').removeClass('scrolledIntoView');
-            elem.addClass('scrolledIntoView');
-            return true;
-        }else{
-            elem.removeClass('scrolledIntoView');
-        }
-	}
-	
-	return false;
-}*/
 
 // Changing colors of header
 jQuery(document).ready(function($){ 
@@ -327,3 +301,51 @@ jQuery(document).ready(function($){
 		return false;
 	});	
 });
+
+
+
+//***************************//
+//			Plugins
+//***************************//
+
+/*$(function() {
+	'use strict';
+    var $sidebar   = $("#sidebar"), 
+        $window    = $(window),
+        offset     = $sidebar.offset(),
+        topPadding = 15;
+
+    $window.scroll(function() {
+        if ($window.scrollTop() > offset.top) {
+            $sidebar.stop().animate({
+                marginTop: $window.scrollTop() - offset.top + topPadding
+            });
+        } else {
+            $sidebar.stop().animate({
+                marginTop: 0
+            });
+        }
+    });
+    
+});*/
+
+
+/**
+ * Hover on Scroll
+ * A jQuery plugin that displays hover affects on mobile during scrolling
+ * See www.bencomeau.com/hover-on-scroll for more information
+ * https://github.com/bencomeau/hover-on-scroll
+ * Version 1.0, October 15 2015
+ * by Ben Comeau
+ */
+
+
+
+/*
+ * ScrollToFixed
+ * https://github.com/bigspotteddog/ScrollToFixed
+ *
+ * Copyright (c) 2011 Joseph Cava-Lynch
+ * MIT license
+ */
+
