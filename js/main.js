@@ -74,9 +74,24 @@ window.onresize = function changeSVG() {
 // Finding the parent of an iframe
 jQuery(document).ready(function($){ 
 	'use strict';
-	$("iframe").parent().addClass("iframe-parent");
+	var ifr = $("iframe");
+	var ifrPar = ifr.parent();
+	if ( !ifrPar.hasClass("zopim") && !ifrPar.is("body")) {
+		ifrPar.addClass("iframe-parent");
+	}
+	//$("body").removeClass("iframe-parent");
+	
 });
 
+// scroll to first section
+jQuery(document).ready(function($){
+	'use strict';
+	$(".arrow").click(function() {
+		$('html,body').animate({
+			scrollTop: $(".one").offset().top},
+			'slow');
+	});
+});
 
 //Gallery masonry init
 jQuery(document).ready(function($){

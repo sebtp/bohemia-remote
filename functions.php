@@ -1,4 +1,11 @@
 <?php
+//Load CSS and scripts
+function theme_styles(){ wp_enqueue_style( 'theme-styles', get_template_directory_uri() . '/style.css', array(), false, 'all' );}
+add_action( 'wp_enqueue_scripts', 'theme_styles' );
+wp_enqueue_script( 'script', get_template_directory_uri() . '/js/main-min.js', array ( 'jquery' ), true);
+wp_enqueue_script( 'imagesloaded', 'https://unpkg.com/imagesloaded@4.1.1/imagesloaded.pkgd.min.js', array('jquery'), '4.1.1', true );
+wp_enqueue_script( 'isotope-layout', 'https://unpkg.com/isotope-layout@3.0.3/dist/isotope.pkgd.min.js', array('jquery'), '3.0.3', true );
+
 add_theme_support('post-thumbnails');
 add_theme_support( 'menus' );
 
@@ -64,19 +71,6 @@ function is_blog () {
 // Gallery format
 // Remove default gallery style
 add_filter( 'use_default_gallery_style', '__return_false' );
-/*add_filter('post_gallery','customFormatGallery',10,2);
-
-function customFormatGallery($string,$attr){
-    $output = "<section class=\"gallery\">";
-    $posts = get_posts(array('include' => $attr['ids'],'post_type' => 'attachment'));
-    foreach($posts as $imagePost){
-		$image_link = wp_get_attachment_image_src($imagePost->ID, 'full')[0];
-		$image_alt = get_post_meta( $imagePost->ID, '_wp_attachment_image_alt', true);
-        $output .= "<a href=".$image_link." alt=".$image_alt."><img src='".$image_link."'>";
-    }
-    $output .= "</section>";
-    return $output;
-}*/
 
 // Allow SVG uploads
 function cc_mime_types($mimes) {

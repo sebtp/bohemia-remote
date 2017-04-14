@@ -10,18 +10,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 		
-		<link rel="stylesheet" href="<?php bloginfo('template_directory');?>/main.css">
-
-		<script>
-		  (function(d) {
-			var config = {
-			  kitId: 'oar8kez',
-			  scriptTimeout: 3000,
-			  async: true
-			},
-			h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-		  })(document);
-		</script>
 		<?php wp_head();?>
 		
 		<!-- Hfreflang etc. -->
@@ -43,8 +31,11 @@
 		<?php if($thatpostlink != ''){ ?>
 		<link rel="alternate" href="<?php echo $thatpostlink; ?>" hreflang="<?php echo $thatlanguage; ?>" />	
 		<?php } ?>
-
 		
+		<style>
+			@import url('https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,700,700i');
+			@import url('https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,700');
+		</style>
 	</head>
 	<?php
 		$posttype = get_post_type();
