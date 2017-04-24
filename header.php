@@ -42,7 +42,7 @@
 		$pagefile = get_page_template_slug();
 		if ( is_front_page() ) :
 		    echo '<body class="front-page">';
-		elseif ( $pagefile == 'page-contact.php' || is_404() || ($posttype == 'post' && !is_home() && !is_tag() ) || $pagefile == 'page-jobs.php' ) :
+		elseif ( $pagefile == 'page-contact.php' || is_404() || ($posttype == 'post' && !is_home() && !is_tag() ) ) :
 		     echo '<body class="single-blog">';
 		elseif ( is_home() || is_tag() ) :
 		     echo '<body class="overview-blog">';
@@ -56,7 +56,7 @@
 		     echo '<body class="overview-about">';
 		elseif ( $pagefile == 'page-clients.php' ) :
 		     echo '<body class="overview-clients">';
-		elseif ( $pagefile == '' && !is_home() && !is_404() && !is_tag() && !is_tax('label') && $posttype != 'post' && $posttype != 'work' && $posttype != 'team_members' && $posttype != 'clients'  ) :
+		elseif ( $pagefile == '' && !is_home() && !is_404() && !is_tag() && !is_tax('label') && $posttype != 'post' && $posttype != 'work' && $posttype != 'team_members' && $posttype != 'clients' || $pagefile == 'page-jobs.php' ) :
 			echo '<body class="single-work">';
 		else : echo '<body>';
 		endif;

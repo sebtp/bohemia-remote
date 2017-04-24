@@ -71,16 +71,44 @@ window.onresize = function changeSVG() {
 };
 
 
-// Finding the parent of an iframe
-jQuery(document).ready(function($){ 
+// Making videos stick to their ratio and resize full width
+jQuery(document).ready(function($){
 	'use strict';
-	var ifr = $("iframe");
-	var ifrPar = ifr.parent();
-	if ( !ifrPar.hasClass("zopim") && !ifrPar.is("body")) {
-		ifrPar.addClass("iframe-parent");
-	}
-	//$("body").removeClass("iframe-parent");
-	
+	// Find all YouTube videos
+	var $allVideos = $("iframe[src^='https://player.vimeo.com'], iframe[src^='https://www.youtube.com'], object, embed"),
+
+		// The element that is fluid width
+		$fluidEl = $(".content > p");
+
+	// Figure out and save aspect ratio for each video
+	$allVideos.each(function() {
+
+	  $(this)
+		.data('aspectRatio', this.height / this.width)
+
+		// and remove the hard coded width/height
+		.removeAttr('height')
+		.removeAttr('width');
+
+	});
+
+	// When the window is resized
+	$(window).resize(function() {
+
+	  var newWidth = $fluidEl.width();
+
+	  // Resize all videos according to their own aspect ratio
+	  $allVideos.each(function() {
+
+		var $el = $(this);
+		$el
+		  .width(newWidth)
+		  .height(newWidth * $el.data('aspectRatio'));
+
+	  });
+
+	// Kick off one resize to fix all videos on page load
+	}).resize();
 });
 
 // scroll to first section
@@ -318,31 +346,73 @@ jQuery(document).ready(function($){
 });
 
 
-
 //***************************//
 //			Plugins
 //***************************//
 
-/*$(function() {
+// Sidebar follow
+/*jQuery(document).ready(function($){
 	'use strict';
-    var $sidebar   = $("#sidebar"), 
-        $window    = $(window),
-        offset     = $sidebar.offset(),
-        topPadding = 15;
+	var vwp = $(document).width();
+	if (( ($("body").hasClass("single-blog") || $("body").hasClass("single-work")) && vwp > 1023) && $("aside").length) {
+		$(function() {
+			var $hh;
+			if ( $("body").hasClass("single-blog") ) {
+				$hh = $(".title:first-child").height() + 185; 
+			} else if ($("body").hasClass("single-work")) {
+				$hh = $("h1:first-child").height() + 185; 
+			}
+			
+			var $sidebar   = $("#sidebar"),
+				$window    = $(window),
+				offset     = $sidebar.offset(),
+				topPadding = -$hh + 30;
 
-    $window.scroll(function() {
-        if ($window.scrollTop() > offset.top) {
-            $sidebar.stop().animate({
-                marginTop: $window.scrollTop() - offset.top + topPadding
-            });
-        } else {
-            $sidebar.stop().animate({
-                marginTop: 0
-            });
-        }
-    });
-    
+			$sidebar.removeClass("initial-mt");
+			$sidebar.css("padding-top",$hh);
+
+			$window.scroll(function() {
+				if ($window.scrollTop() > offset.top + $hh) {
+					if ($('div.gallery').inView()) {
+						//$sidebar.stop();
+						console.log("Visible!");
+					} else {
+						$sidebar.stop().animate({
+							marginTop: $window.scrollTop() - offset.top + topPadding
+						});
+					}
+					
+					
+				} else {
+					$sidebar.stop().animate({
+						marginTop: 0
+					});
+				}
+			});
+
+		});
+	}
+	
 });*/
+
+
+/*function isElementInViewport (el) {
+	'use strict';
+
+    //special bonus for those using jQuery
+    if (typeof jQuery === "function" && el instanceof jQuery) {
+        el = el[0];
+    }
+
+    var rect = el.getBoundingClientRect();
+
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && //or $(window).height()
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth) //or $(window).width()
+    );
+}
 
 
 /**
@@ -352,15 +422,5 @@ jQuery(document).ready(function($){
  * https://github.com/bencomeau/hover-on-scroll
  * Version 1.0, October 15 2015
  * by Ben Comeau
- */
-
-
-
-/*
- * ScrollToFixed
- * https://github.com/bigspotteddog/ScrollToFixed
- *
- * Copyright (c) 2011 Joseph Cava-Lynch
- * MIT license
  */
 

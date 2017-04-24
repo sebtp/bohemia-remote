@@ -59,7 +59,6 @@
 						   }
 						?>
 						</div>
-						<hr noshade="noshade" color="#eee" class="row">
 						<?php
 							$authorid = get_field('blog_author');
 						?>
@@ -67,29 +66,31 @@
 						<?php foreach( $authorid as $authorid ): ?>
 						<?php $authorimg = wp_get_attachment_image_src( get_post_thumbnail_id( $authorid->ID), 'thumbnail'); ?>
 						<div class="author-blog row">
-							<div class="author-wrapper row middle-xs">
-								<img src="<?php echo $authorimg[0]; ?>" alt="<?php echo get_the_title( $authorid->ID ); ?>">						
-								<div class="author-inner">
-									<div class="row"><?php echo get_the_title( $authorid->ID ); ?></div>
-									<div class="row">
-										<?php the_field('job_title', $authorid->ID ); ?><?php
-											$company = get_field('company', $authorid->ID);
-											if ($company != ''){
-												echo '&comma;&nbsp;' . $company;
-											}
-										?>
+						
+							<div class="col-xs-12 col-md-10 col-lg-8">
+								<div class="author-wrapper row middle-xs">
+									<img src="<?php echo $authorimg[0]; ?>" alt="<?php echo get_the_title( $authorid->ID ); ?>">						
+									<div class="author-inner">
+										<div class="row"><?php echo get_the_title( $authorid->ID ); ?></div>
+										<div class="row">
+											<?php the_field('job_title', $authorid->ID ); ?><?php
+												$company = get_field('company', $authorid->ID);
+												if ($company != ''){
+													echo '&comma;&nbsp;' . $company;
+												}
+											?>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="row">
+											<?php the_field('author_bio', $authorid->ID ); ?>				
+										</div>
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-lg-8">
-									<div class="row">
-										<div class="col-xs-12">
-											<?php the_field('author_bio', $authorid->ID ); ?>
-										</div>										
-									</div>
-								</div>
-							</div>
+							
 						</div>
 						<?php endforeach; ?>
 						<?php endif; ?>						

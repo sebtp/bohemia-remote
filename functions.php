@@ -1,8 +1,10 @@
 <?php
 //Load CSS and scripts
-function theme_styles(){ wp_enqueue_style( 'theme-styles', get_template_directory_uri() . '/style.css', array(), false, 'all' );}
+function theme_styles() { 
+	wp_enqueue_style( 'theme-styles', get_template_directory_uri() . '/style.css', array(), false, 'all' );
+	wp_enqueue_script( 'script', get_template_directory_uri() . '/js/main-min.js', array ( 'jquery' ), true);
+}
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
-wp_enqueue_script( 'script', get_template_directory_uri() . '/js/main-min.js', array ( 'jquery' ), true);
 wp_enqueue_script( 'imagesloaded', 'https://unpkg.com/imagesloaded@4.1.1/imagesloaded.pkgd.min.js', array('jquery'), '4.1.1', true );
 wp_enqueue_script( 'isotope-layout', 'https://unpkg.com/isotope-layout@3.0.3/dist/isotope.pkgd.min.js', array('jquery'), '3.0.3', true );
 
@@ -103,4 +105,12 @@ add_shortcode('quote', 'quote_showcase');
 
 // title tag
 add_theme_support( 'title-tag' );
+
+//speed up Contact form 7 by loading associated javascript files ONLY on the contact form itself.
+add_action( 'wp_print_scripts', 'my_deregister_javascript', 100 );
+function my_deregister_javascript() {
+	if ( !is_front_page() && !is_page('Contact') ) {wp_deregister_script( 'contact-form-7' );}}
+add_action( 'wp_print_styles', 'my_deregister_styles', 100 );
+function my_deregister_styles() {
+	if ( !is_front_page() && !is_page('Contact') ) {wp_deregister_style( 'contact-form-7' );}}
 ?>
