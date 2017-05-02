@@ -11,7 +11,7 @@
 						</h1>
 					</div>
 					<div class="row">
-						<div class="white-bg col-xs col-sm-7 col-lg-6 col-xlg-5">
+						<div class="white-bg col-xs-12 col-sm-7 col-lg-6 col-xlg-5">
 							<?php the_content(); ?>
 						</div>
 					</div>											

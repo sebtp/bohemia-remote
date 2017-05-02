@@ -105,7 +105,7 @@
 		</main>
 		
 <!-- 	Prev/Next -->
-		<section class="container-full">
+		<section class="next container-full">
 			<div class="row">
 				<?php
 				if( get_adjacent_post(false, '', false) ) {

@@ -10,11 +10,20 @@
 ?>
 
 <!-- 	The hero image. -->
+		
 		<div class="hero container-full" style="background-image: url(<?php echo $posts_page_img[0]; ?>)">
 			<div class="row middle-xs">
-				<div class="col-xs">
-					<h1 class="col-xs col-sm-10 col-md-8 col-md-offset-1"><?php echo $posts_title; ?></h1>
-					<div class="white-bg col-xs col-sm-6 col-md-5 col-md-offset-1 col-lg-4"><?php echo $posts_page_txt; ?></div>
+				<div class="col-xs col-sm-11 col-md-9 col-md-offset-1">
+					<div class="row">
+						<h1 class="col-xs">
+							<?php echo $posts_title; ?>
+						</h1>
+					</div>
+					<div class="row">
+						<div class="white-bg col-xs-12 col-sm-7 col-lg-6 col-xlg-5">
+							<?php echo $posts_page_txt; ?>
+						</div>
+					</div>											
 				</div>
 			</div>
 			<div class="row">

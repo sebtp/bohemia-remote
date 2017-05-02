@@ -5,9 +5,17 @@
 <!-- 	The hero image. echo the url instead of: http://lorempixel.com/1920/1080-->
 		<div class="hero container-full" style="background-image: url(<?php echo the_post_thumbnail_url( 'full' ); ?>);">
 			<div class="row middle-xs">
-				<div class="col-xs col-sm-6 col-md-5 col-md-offset-1 col-lg-4">
-					<h1><?php the_title(); ?></h1>
-					<div class="white-bg"><?php the_content(); ?></div>
+				<div class="col-xs col-sm-11 col-md-9 col-md-offset-1">
+					<div class="row">
+						<h1 class="col-xs">
+							<?php the_title(); ?>
+						</h1>
+					</div>
+					<div class="row">
+						<div class="white-bg col-xs-12 col-sm-7 col-lg-6 col-xlg-5">
+							<?php the_content(); ?>
+						</div>
+					</div>											
 				</div>
 			</div>
 		</div>
@@ -40,15 +48,13 @@
 							<div class="row">
 								<h2 class="col-xs-12 col-xlg-11 col-xxlg-10 col-xxxlg-9"><?php the_title(); ?></h2>
 							</div>
-							
+							<?php if( get_field('quote') ): ?>
 							<div class="row">
 								<div class="quote col-xs-12 col-lg-8">
-									<?php if( get_field('quote') ): ?>
-										&ldquo;<?php the_field('quote'); ?>&rdquo;
-									<?php endif; ?>
+									&ldquo;<?php the_field('quote'); ?>&rdquo;
 								</div>
 							</div>
-							
+							<?php endif; ?>
 							<div class="row">
 								<div class="position col-xs-12"><?php the_field('job_title'); ?></div>
 							</div>							

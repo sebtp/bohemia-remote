@@ -13,7 +13,7 @@
 <!-- 	The main content -->
 		<main class="container-fluid">
 			<div class="row relative">
-				<article class="col-xs-12"> 
+				<article class="col-xs-12">
 					
 				<!-- Header -->
 					<header class="col-xs col-sm-7 col-md-offset-1">
@@ -88,7 +88,7 @@
 		</main>
 		
 <!-- 	Prev/Next -->
-		<section class="container-full work-bg">
+		<section class="next container-full work-bg">
 			<div class="row">
 				<div class="svg-overview"></div>
 			</div>
@@ -274,7 +274,7 @@
 					</div>
 				</a>
 				<?php wp_reset_query(); } ?>				
-				
+		
 			</div>
 			<div class="tree">
 				<img src="<?php bloginfo('template_directory');?>/img/tree.jpg" alt="">
