@@ -53,140 +53,48 @@
 		<section class="container-full work-bg">
 			<div class="row">
 				<div class="svg-overview"></div>
-			</div> 
-			<div class="row">
-				<?php
-				if( get_adjacent_post(false, '', false) ) {
-				$next_post = get_next_post();
-				if (!empty( $next_post )): ?>
+			</div>
+			<?php
+				$tm_args = array(
+					'post_type' => 'team_members',
+					'posts_per_page' => 100
+				);
+				$tm_query = new WP_Query( $tm_args );
+			?>
+			<?php if( $tm_query->have_posts() ): ?> 
+			<div class="row" id="show-posts">
+				<?php while( $tm_query->have_posts() ) : $tm_query->the_post(); ?>
 				<?php 
-				$nextpostid = $next_post->ID;
-				$nextimg = wp_get_attachment_image_src( get_post_thumbnail_id($nextpostid), 'full');
+					$figm = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full');
 				?>
-				<a href="<?php echo get_permalink( $next_post->ID ); ?>" class="col-xs-12 col-md-6 post-item">
+				<a href="<?php the_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
 					<span></span>
-					<img src="<?php echo $nextimg[0]; ?>" alt="<?php echo $next_post->post_title; ?>">	
-					<div class="row post-item-inner">
-						<div class="col-xs-12">
-												
-							<div class="row">
-								<h3 class="col-xs-12 col-xlg-11 col-xxlg-10 col-xxxlg-9"><?php echo $next_post->post_title; ?></h3>
-							</div>
-							
-							<div class="row">
-								<div class="quote col-xs-12 col-lg-8">
-									<?php if( get_field('quote', $nextpostid) ): ?>
-										&ldquo;<?php the_field('quote', $nextpostid); ?>&rdquo;
-									<?php endif; ?>
-								</div>
-							</div>
-							
-							<div class="row">
-								<div class="position col-xs-12"><?php the_field('job_title', $nextpostid); ?></div>
-							</div>
-
-						</div>
-					</div>
-				</a>
-				<?php 
-					endif; 
-				} else {
-					$last = new WP_Query('post_type=team_members&posts_per_page=1&order=DESC'); $last->the_post();
-					$nextimg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full');
-				?>
-				<a href="<?php echo get_permalink(); ?>" class="col-xs-12 col-md-6 post-item">
-					<span></span>
-					<img src="<?php echo $nextimg[0]; ?>" alt="<?php the_title(); ?>">	
-					<div class="row post-item-inner">
-						<div class="col-xs-12">
-												
-							<div class="row">
-								<h3 class="col-xs-12 col-xlg-11 col-xxlg-10 col-xxxlg-9"><?php the_title(); ?></h3>
-							</div>
-							
-							<div class="row">
-								<div class="quote col-xs-12 col-lg-8">
-									<?php if( get_field('quote') ): ?>
-										&ldquo;<?php the_field('quote'); ?>&rdquo;
-									<?php endif; ?>
-								</div>
-							</div>
-							
-							<div class="row">
-								<div class="position col-xs-12"><?php the_field('job_title'); ?></div>
-							</div>
-
-						</div>
-					</div>
-				</a>
-				<?php wp_reset_query(); } ?>
-				<?php
-				if( get_adjacent_post(false, '', true) ) { 
-				$prev_post = get_previous_post();
-				if (!empty( $prev_post )): ?>
-				<?php 
-				$prevpostid = $prev_post->ID;
-				$previmg = wp_get_attachment_image_src( get_post_thumbnail_id($prevpostid), 'full');
-				?>
-				<a href="<?php echo get_permalink( $prev_post->ID ); ?>" class="col-xs-12 col-md-6 post-item">
-					<span></span>
-					<img src="<?php echo $previmg[0]; ?>" alt="<?php echo $prev_post->post_title; ?>">	
+					<img src="<?php echo $figm[0]; ?>" alt="<?php the_title(); ?>">	
 					<div class="row post-item-inner">
 						<div class="col-xs-12">
 						
 							<div class="row">
-								<h3 class="col-xs-12 col-xlg-11 col-xxlg-10 col-xxxlg-9"><?php echo $prev_post->post_title; ?></h3>
+								<h2 class="col-xs-12 col-xlg-11 col-xxlg-10 col-xxxlg-9"><?php the_title(); ?></h2>
 							</div>
-							
+							<?php if( get_field('quote') ): ?>
 							<div class="row">
 								<div class="quote col-xs-12 col-lg-8">
-									<?php if( get_field('quote', $prevpostid) ): ?>
-										&ldquo;<?php the_field('quote', $prevpostid); ?>&rdquo;
-									<?php endif; ?>
+									&ldquo;<?php the_field('quote'); ?>&rdquo;
 								</div>
 							</div>
-							
-							<div class="row">
-								<div class="position col-xs-12"><?php the_field('job_title', $prevpostid); ?></div>
-							</div>
-
-						</div>
-					</div>
-				</a>
-				<?php endif; ?>
-				<?php 
-					} else { 
-					$first = new WP_Query('post_type=team_members&posts_per_page=1&order=ASC'); $first->the_post();
-					$previmg = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full');
-				?>
-				<a href="<?php echo get_permalink( ); ?>" class="col-xs-12 col-md-6 post-item">
-					<span></span>
-					<img src="<?php echo $previmg[0]; ?>" alt="<?php the_title(); ?>">	
-					<div class="row post-item-inner">
-						<div class="col-xs-12">
-												
-							<div class="row">
-								<h3 class="col-xs-12 col-xlg-11 col-xxlg-10 col-xxxlg-9"><?php the_title(); ?></h3>
-							</div>
-							
-							<div class="row">
-								<div class="quote col-xs-12 col-lg-8">
-									<?php if( get_field('quote') ): ?>
-										&ldquo;<?php the_field('quote'); ?>&rdquo;
-									<?php endif; ?>
-								</div>
-							</div>
-							
+							<?php endif; ?>
 							<div class="row">
 								<div class="position col-xs-12"><?php the_field('job_title'); ?></div>
-							</div>
-
+							</div>							
 						</div>
 					</div>
 				</a>
-				<?php wp_reset_query(); } ?>				
-				
+				<?php endwhile; ?>
+    		    				
 			</div>
+			<?php endif; ?>
+		    <?php wp_reset_query(); ?>					
+				
 			<div class="tree">
 				<img src="<?php bloginfo('template_directory');?>/img/tree.jpg" alt="">
 			</div>
