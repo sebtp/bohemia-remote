@@ -32,5 +32,10 @@
 			</div>		
 		</footer>
 		<?php wp_footer(); ?>
+		<script>
+			if (window.innerWidth > 767) {
+				var rellax = new Rellax('.rellax'); 
+			}
+		</script>
 	</body>
 </html>

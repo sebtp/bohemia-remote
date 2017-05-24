@@ -33,7 +33,7 @@
 		<?php } ?>
 		
 		<style>
-			@import url('https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,700,700i');
+			@import url('https://fonts.googleapis.com/css?family=Alegreya:400,400i,700,700i');
 			@import url('https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,700');
 		</style>
 	</head>
