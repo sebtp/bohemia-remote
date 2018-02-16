@@ -9,7 +9,17 @@
 		<title><?php wp_title(' | ',TRUE,'right'); ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
-		
+		<!-- Hotjar Tracking Code for http://bohemiaamsterdam.com -->
+		<script>
+			(function(h,o,t,j,a,r){
+				h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+				h._hjSettings={hjid:207300,hjsv:5};
+				a=o.getElementsByTagName('head')[0];
+				r=o.createElement('script');r.async=1;
+				r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+				a.appendChild(r);
+			})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+		</script>
 		<?php wp_head();?>
 		
 		<!-- Hfreflang etc. -->
@@ -90,13 +100,13 @@
 			<div class="gradient"></div>
 			<div class="container-full">
 				<div class="row between-xs">
-					<div class="col-xs-4 col-md-4">
+					<div class="col-xs-4 col-md-3">
 						<button id="ham"><span></span><span></span><span></span><span></span></button>
 					</div>
-					<div class="col-md-4">
-						<a id="logo" href="<?php echo get_home_url(); ?>"><strong>Bohemia</strong> Amsterdam</a>
+					<div class="col-md-6">
+						<a id="logo" href="<?php echo get_home_url(); ?>"><strong>Bohemia</strong> Amsterdam<br><span>Creative Digital Agency</span></a>
 					</div>
-					<div class="col-xs-8 col-md-4">
+					<div class="col-xs-8 col-md-3">
 						<a href="tel:0031204233555" id="phone">&#43;31 (0)20 42 33 555</a>
 					</div>
 				</div>

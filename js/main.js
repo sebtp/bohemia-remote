@@ -404,7 +404,7 @@ jQuery("document").ready(function($) {
 	 */
 		
 	var vwp = $(window).width();
-	if (( ($("body").hasClass("single-blog") || $("body").hasClass("single-work")) && vwp > 1023) && $("#sidebar").length) {
+	if ( ($("body").hasClass("single-blog") || $("body").hasClass("single-work")) && $("#sidebar").length) {
 		
 		/**
 		 * Downloadable form fields
@@ -418,6 +418,11 @@ jQuery("document").ready(function($) {
 				$dlTitle = $("#sidebar #downloadable_title").text(),
 				$dlURL = $("#sidebar #downloadable_file_url").text();
 			
+//			console.log($dlTitleInput);
+//			console.log($dlURLInput);
+//			console.log($dlTitle);
+//			console.log($dlURL);
+			
 			$dlTitleInput.val($dlTitle);
 			$dlURLInput.val($dlURL);
 			
@@ -430,40 +435,44 @@ jQuery("document").ready(function($) {
 		 * 
 		 */
 		
-		$(function() {
-			var $hh;
-			if ( $("body").hasClass("single-blog") ) {
-				$hh = $(".title:first-child").height() + 185; 
-			} else if ($("body").hasClass("single-work")) {
-				$hh = $("h1:first-child").height() + 185; 
-			}
+		if (vwp > 767) {
 			
-			var $sidebar   = $("#sidebar"),
-				$window    = $(window),
-				offset     = $sidebar.offset(),
-				topPadding = -$hh + 30;
-
-			$sidebar.removeClass("initial-mt");
-			$sidebar.css("padding-top",$hh);
-			
-			var offsetBot = $window.height() - $("#sidebar").outerHeight() - topPadding;
-			
-			$window.scroll(function() {
-				if ($window.scrollTop() > offset.top + $hh) {
-					if ($('.gallery').isOnScreen(offsetBot) || $('.next').isOnScreen(offsetBot)) {
-						$sidebar.stop();
-					} else {
-					  //$sidebar.stop().animate({marginTop: $window.scrollTop() - offset.top + topPadding});
-					  $sidebar.stop().css("margin-top", $window.scrollTop() - offset.top + topPadding);
-					}
-					
-				} else {
-					//$sidebar.stop().animate({marginTop: 0});
-					$sidebar.stop().css("margin-top", "0");
+		
+			$(function() {
+				var $hh;
+				if ( $("body").hasClass("single-blog") ) {
+					$hh = $(".title:first-child").height() + 185; 
+				} else if ($("body").hasClass("single-work")) {
+					$hh = $("h1:first-child").height() + 185; 
 				}
-			});
 
-		});
+				var $sidebar   = $("#sidebar"),
+					$window    = $(window),
+					offset     = $sidebar.offset(),
+					topPadding = -$hh + 30;
+
+				$sidebar.removeClass("initial-mt");
+				$sidebar.css("padding-top",$hh);
+
+				var offsetBot = $window.height() - $("#sidebar").outerHeight() - topPadding;
+
+				$window.scroll(function() {
+					if ($window.scrollTop() > offset.top + $hh) {
+						if ($('.gallery').isOnScreen(offsetBot) || $('.next').isOnScreen(offsetBot)) {
+							$sidebar.stop();
+						} else {
+						  //$sidebar.stop().animate({marginTop: $window.scrollTop() - offset.top + topPadding});
+						  $sidebar.stop().css("margin-top", $window.scrollTop() - offset.top + topPadding);
+						}
+
+					} else {
+						//$sidebar.stop().animate({marginTop: 0});
+						$sidebar.stop().css("margin-top", "0");
+					}
+				});
+
+			});
+		}
 	}
 	
 	

@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 	
-<!-- 	The hero image. echo the url at PHPHERE-->
-		<div class="hero" style="
+<!-- 	The hero image. echo the url at HERE-->
+		<div class="hero rellax" style="
 			background-image: url('<?php the_post_thumbnail_url( 'full' ); ?>');
 			background-image: url('<?php the_post_thumbnail_url( 'full' ); ?>'), -webkit-linear-gradient(45deg,#0046b4,#46beaf);
 			background-image: url('<?php the_post_thumbnail_url( 'full' ); ?>'), -moz-linear-gradient(45deg,#0046b4,#46beaf);

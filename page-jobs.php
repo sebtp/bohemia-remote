@@ -67,7 +67,7 @@
 											$languagebutton = 'Apply';
 										}
 									?>
-									<p><a class="red-btn" href="mailto:<?php the_field('mailto'); ?>?SUBJECT=<?php the_title(); ?>"><?php echo $languagebutton ?></a></p>
+									<p><a class="red-btn" href="mailto:<?php the_field('mailto'); ?>?SUBJECT=<?php the_title(); ?>"><?php the_field('mailto'); ?></a></p>
 								</section>
 							
 						</article>
